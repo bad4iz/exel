@@ -3,13 +3,13 @@
     ?>
 <tr>
     <td>1</td>
-    <td>15.03.17</td>
-    <td>15:03</td>
+    <td class="entryInputData">15.03.17</td>
+    <td class="entryInputTime">15:03</td>
 
     <td >
         <?
         if ($admin) {
-            echo "<input type=\"text\" class=\"numberKPInput\" value=\"Создать таблицу\" onchange=\"function () {
+            echo "<input type=\"text\" class=\"entryInput\" value=\"Создать таблицу\" onchange=\"function () {
   console.log(55555);
 }\">";
         }else echo "Создать таблицу"
@@ -18,7 +18,7 @@
     <td>
         <?
         if ($admin) {
-            echo "<input type=\"text\" class=\"numberKPInput\" value=\" Создать таблицу заполнения менеджарами\" >";
+            echo "<input type=\"text\" class=\"number\" value=\" Создать таблицу заполнения менеджарами\" >";
         }else echo " Создать таблицу заполнения менеджарами"
         ?>
        </td>
@@ -49,7 +49,7 @@
 
 
     </td>
-    <td>10,02,17</td>
+    <td class="dataMeneger">10,02,17</td>
 </tr>
 <?} // конец for
 
