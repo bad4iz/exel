@@ -5,7 +5,12 @@ use exel\model\MainModel;
 require_once 'bootstrap.php';
 
 $mainModel = new MainModel();
+
 d($mainModel->getAll());
+
+
+$mainModel->createItem();
+
 
 $insert ='';
 if (isset($_GET['m'])) {
