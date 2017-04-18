@@ -15,7 +15,6 @@ function myAutoLoad($className) {
     //    $className = 'Model/MainModel';
 
 
-    echo $className . '<br>';
     require_once $className . '.php';
 }
 

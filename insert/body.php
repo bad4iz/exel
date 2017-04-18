@@ -1,55 +1,48 @@
-<?for ($i=1; $i<10; $i++){
-    $menedger = rand ( 1 , 4 )
+<?
+ $menedger ;
+
+foreach($mains as $main){
+
     ?>
 <tr>
     <td>1</td>
-    <td class="entryInputData">15.03.17</td>
-    <td class="entryInputTime">15:03</td>
+    <td class="entryInputData"><?= $main['dateMain'] ?></td>
+    <td class="entryInputTime"><?= $main['dateMain']?></td>
 
     <td >
         <?
         if ($admin) {
-            echo "<input type=\"text\" class=\"entryInput\" value=\"Создать таблицу\" onchange=\"function () {
-  console.log(55555);
-}\">";
-        }else echo "Создать таблицу"
+            echo '<input type="text" class="entryInput" value="'.$main["name"] .'">';
+        }else echo $main["name"];
         ?>
         </td>
     <td>
         <?
         if ($admin) {
-            echo "<input type=\"text\" class=\"number\" value=\" Создать таблицу заполнения менеджарами\" >";
-        }else echo " Создать таблицу заполнения менеджарами"
+            echo '<textarea name="desc">'.$main["desc"] .'</textarea>';
+        }else echo $main["desc"];
         ?>
        </td>
     <td>
-        <?if ($admin){?>
-        <div class="controls form-group">
-            <select id="article-language" name="article-language"
-                    data-style="btn-success"
-                    class="selectpicker">
-                <option value="0">Первый менеджер</option>
-                <option value="1">Второй менеджер</option>
-                <option value="2">третий менеджер</option>
-            </select>
-        </div>
-        <?} else{
-            echo $name;
+        <?if ($admin){
+            $selectMeneger->view();
+        } else{
+            echo $main['meneger_name'];
         }?>
 
     </td>
-    <td>
-        <?if($m == $menedger){
-            echo "<input type=\"text\" class=\"numberKPInput\" value=\"задание\">";
-        }else{
-            echo "задание";
+    <td >
+        <?if($m == $main['menegers_id']){?>
+            <div  class="switchHide">
+            <input style="display:none;" type="text" class="numberKPInput" value="<?=$main['number_kp']?>">
+            <p><?=$main['number_kp']?$main['number_kp']:'незадан'?></p>
+            </div>
+        <?}else{
+            echo $main["number_kp"];
         }
         ?>
-
-
-
     </td>
-    <td class="dataMeneger">10,02,17</td>
+    <td class="dataMeneger"><?=$main["date_kp"]?></td>
 </tr>
 <?} // конец for
 
@@ -65,6 +58,6 @@ if ($admin) {?>
     <td><span class="badge badge-success"><i class="fa fa-plus"></i></span></td>
 </tr>
 <?}?>
-<script src="/meneger.js">
+<script src="/js/meneger.js">
 
 </script>

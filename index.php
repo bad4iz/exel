@@ -1,25 +1,37 @@
 <?
 
 use exel\model\MainModel;
+use exel\model\MenegerModel;
+use exel\VIews\Select;
 
 require_once 'bootstrap.php';
 
 $mainModel = new MainModel();
+$menegerModel = new MenegerModel();
 
-d($mainModel->getAll());
+
+$mains = $mainModel->getAll();
+$menegers = $menegerModel->getAll();
+
+$selectMeneger = new Select($menegers);
+$selectMeneger->setAttr('menegers_id', 'meneger_name');
 
 
-$mainModel->createItem();
+d($mains);
+d($menegers);
 
 
 $insert ='';
 if (isset($_GET['m'])) {
-    $insert = 'insert/menegers.php';
+    $m = $_GET['m'];
 } else if (isset($_GET['a'])) {
     $insert = 'insert/admin.php';
     $admin = true;
 
 } else exit();
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,5 +105,9 @@ if (isset($_GET['m'])) {
 
 <!-- page specific -->
 <script src="link/js/forms-article.js"></script>
+
+
+<script src="js/lib/lib.js"></script>
+<script src="js/meneger.js"></script>
 </body>
 </html>
