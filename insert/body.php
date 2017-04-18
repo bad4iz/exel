@@ -34,7 +34,7 @@ foreach($mains as $main){
     <td >
         <?if($m == $main['menegers_id']){?>
             <div  class="switchHide">
-            <input style="display:none;" type="text" class="numberKPInput" value="<?=$main['number_kp']?>">
+            <input data-main_id="<?=$main['main_id']?>" style="display:none;" type="text" class="numberKPInput" value="<?=$main['number_kp']?>">
             <p><?=$main['number_kp']?$main['number_kp']:'незадан'?></p>
             </div>
         <?}else{

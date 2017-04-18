@@ -58,10 +58,13 @@ function switchHide() { // переключатель визибл
             one.onblur = function () {
                 one.style.display = 'none';
                 two.style.display = '';
-                console.info(one.value);
-                console.info(two.textContent);
+                console.info(one.dataset.main_id);
+                let text = {
+                    id: one.dataset.main_id,
+                    number_kp: one.value
+                };
                 if (one.value != two.textContent) {
-                    httpPost("Router/menegerRouter.php", 'addKp=' + JSON.stringify(one.value), function(it) {
+                    httpPost("Router/menegerRouter.php", 'addKp=' + JSON.stringify(text), function(it) {
                         console.log(it);
                         // location.reload()
                     })

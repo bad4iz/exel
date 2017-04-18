@@ -15,7 +15,8 @@ $mains = new MainModel();
 foreach ($_POST  as $key => $value){
     switch ($key){
         case 'addKp':
-            $mains
-            print $value;
+                $resp = json_decode($value);
+            print $mains->addKp($resp->id,$resp->number_kp);
+//            print $value;
     }
 }
