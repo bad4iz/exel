@@ -11,6 +11,6 @@ namespace exel\model;
 
 class ExelDb {
     function __construct() {
-        $this->db = new \db('exel');
+        $this->db = new Db('exel');
     }
 }

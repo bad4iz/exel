@@ -10,5 +10,18 @@ namespace exel\model;
 
 
 class MainModel extends ExelDb {
+    private $table = 'main';
+
+    function getAll(){
+        $sql = "SELECT * FROM $this->table";
+        $items = $this->db->selectAssoc($sql);
+        return $items;
+    }
+
+    function createItem(){
+        $timeCreate = time() ;
+
+    }
+
 
 }
