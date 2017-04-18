@@ -1,4 +1,7 @@
 <?
+
+require_once 'bootstrap.php';
+
 $insert ='';
 if (isset($_GET['m'])) {
     $insert = 'insert/menegers.php';
