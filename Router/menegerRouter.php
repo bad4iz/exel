@@ -7,16 +7,21 @@
  */
 
 use exel\model\MainModel;
+
 require_once '../bootstrap.php';
 $post = $_POST;
 
 $mains = new MainModel();
 
-foreach ($_POST  as $key => $value){
-    switch ($key){
+foreach ($_POST as $key => $value) {
+    switch ($key) {
         case 'addKp':
-                $resp = json_decode($value);
-            print $mains->addKp($resp->id,$resp->number_kp);
-//            print $value;
+            $resp = json_decode($value);
+            print $mains->addKp($resp->id, $resp->number_kp);
+        //            print $value;
+        case 'updateMeneger':
+            $resp = json_decode($value);
+            print $mains->updateMeneger($resp->id, $resp->meneger_id);
+        //            print $value;
     }
 }

@@ -1,6 +1,8 @@
 <?
- $menedger ;
+use exel\VIews\Select;
 
+$menedger ;
+$selectMeneger = [];
 foreach($mains as $main){
     $dateMain = new DateTime($main['dateMain']);
 
@@ -11,6 +13,10 @@ foreach($mains as $main){
         $dateKp = '';
     }
     ?>
+
+
+
+
 <tr>
     <td ><?= $main['main_id'] ?></td>
     <td class="center entryInputData">
@@ -34,14 +40,19 @@ foreach($mains as $main){
        </td>
     <td class="select">
         <?if ($admin){
-            $selectMeneger->view("data-main_id=".$main['main_id']);
+            $selectMeneger[$main['main_id']] = new Select($menegers);
+            $selectMeneger[$main['main_id']]->selected($main['menegers_id']);
+
+            $selectMeneger[$main['main_id']]->setAttr('menegers_id', 'meneger_name');
+
+            $selectMeneger[$main['main_id']]->view("data-main_id=".$main['main_id']);
         } else{
             echo $main['meneger_name'];
         }?>
 
     </td>
     <td class="center">
-        <?if($m == $main['menegers_id']){?>
+        <?if($m === $main['menegers_id']){?>
             <div  class="switchHide">
             <input data-main_id="<?=$main['main_id']?>" style="display:none;" type="text" class="numberKPInput" value="<?=$main['number_kp']?>">
             <p style="border-bottom: 1px solid #3a3a3a"><?=$main['number_kp']?$main['number_kp']:'незадан'?></p>

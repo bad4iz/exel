@@ -4,6 +4,7 @@
 window.onload = function () {
 
     switchHide();
+    updateMenegerClick()
 };
 
 
@@ -43,6 +44,19 @@ function setNumberKP(idMime, number_kp) { // пишем в базу номер �
 }
 
 function updateMenegerClick() {
-    const buttons = document.querySelectorAll('button.updateMeneger');
-    updateMeneger
+    const selects = document.querySelectorAll('.updateMeneger');
+    selects.forEach(select=>{
+        select.onchange = function () {
+            updateMeneger(this);
+        }
+    })
 }
+function updateMeneger(that) {
+    const text = {
+        id:that.dataset.main_id,
+        meneger_id:that.value
+        };
+            httpPost("Router/menegerRouter.php", 'updateMeneger=' + JSON.stringify(text), function (it) {
+                location.reload()
+            })
+    }

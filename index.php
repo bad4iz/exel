@@ -13,14 +13,12 @@ $menegerModel = new MenegerModel();
 $mains = $mainModel->getAll();
 $menegers = $menegerModel->getAll();
 
-$selectMeneger = new Select($menegers);
-$selectMeneger->setAttr('menegers_id', 'meneger_name');
 
 
 d($mains);
 d($menegers);
 
-
+$m=0;
 $insert ='';
 if (isset($_GET['m'])) {
     $m = $_GET['m'];

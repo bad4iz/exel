@@ -27,9 +27,13 @@ class MainModel extends ExelDb {
     }
     function addKp($id, $num){
         $sql = "UPDATE `main` SET `number_kp`=$num,`date_kp`=now() WHERE id=$id";
-        echo $sql;
         $id = $this->db->addAndGetId($sql);
-//        return $id;
+        return $id;
+    }
+    function updateMeneger($id, $meneger_id){
+        $sql = "UPDATE `main` SET `meneger_id`=$meneger_id WHERE id=$id";
+        $id = $this->db->addAndGetId($sql);
+        return $id;
     }
 
 
