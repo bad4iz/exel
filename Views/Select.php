@@ -26,9 +26,9 @@ class Select implements View {
         $this->nameId = $nameId;
     }
 
-    function view() {
-        echo '<div class="controls form-group">
-            <select id="article-language" name="article-language" data-style="btn-success" class="selectpicker">';
+    function view($text) {
+        echo '<div class="controls" >
+            <select '. $text .'  data-style="btn-success" class="updateMeneger selectpicker">';
             foreach ($this->models as $model){
             echo '<option value="'.$model[$this->nameId].'">'.$model[$this->nameValue].'</option>';
             }

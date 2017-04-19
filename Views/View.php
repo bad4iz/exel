@@ -10,5 +10,5 @@ namespace exel\VIews;
 
 
 interface View {
- function view();
+ function view($text);
 }

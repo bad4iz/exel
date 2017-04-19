@@ -2,12 +2,21 @@
  $menedger ;
 
 foreach($mains as $main){
+    $dateMain = new DateTime($main['dateMain']);
 
+    if($main['date_kp']){
+        $dateKp = new DateTime($main['date_kp']);
+        $dateKp = $dateKp->Format('Y-m-d');
+    }else{
+        $dateKp = '';
+    }
     ?>
 <tr>
-    <td>1</td>
-    <td class="entryInputData"><?= $main['dateMain'] ?></td>
-    <td class="entryInputTime"><?= $main['dateMain']?></td>
+    <td ><?= $main['main_id'] ?></td>
+    <td class="center entryInputData">
+        <?= $dateMain->Format('Y-m-d'); ?>
+    </td>
+    <td class="center entryInputTime"><?= $dateMain->Format('H:i')?></td>
 
     <td >
         <?
@@ -23,26 +32,26 @@ foreach($mains as $main){
         }else echo $main["desc"];
         ?>
        </td>
-    <td>
+    <td class="select">
         <?if ($admin){
-            $selectMeneger->view();
+            $selectMeneger->view("data-main_id=".$main['main_id']);
         } else{
             echo $main['meneger_name'];
         }?>
 
     </td>
-    <td >
+    <td class="center">
         <?if($m == $main['menegers_id']){?>
             <div  class="switchHide">
             <input data-main_id="<?=$main['main_id']?>" style="display:none;" type="text" class="numberKPInput" value="<?=$main['number_kp']?>">
-            <p><?=$main['number_kp']?$main['number_kp']:'незадан'?></p>
+            <p style="border-bottom: 1px solid #3a3a3a"><?=$main['number_kp']?$main['number_kp']:'незадан'?></p>
             </div>
         <?}else{
             echo $main["number_kp"];
         }
         ?>
-    </td>
-    <td class="dataMeneger"><?=$main["date_kp"]?></td>
+    </td class="center">
+    <td class="dataMeneger"><?=$dateKp ?></td>
 </tr>
 <?} // конец for
 

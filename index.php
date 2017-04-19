@@ -39,6 +39,9 @@ if (isset($_GET['m'])) {
     <meta charset="UTF-8">
     <link href="css/application.min.css" rel="stylesheet">
     <link href="/css/hc_slider.css" rel="stylesheet">
+
+
+    <link href="/css/myCss.css" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
@@ -76,9 +79,7 @@ if (isset($_GET['m'])) {
                         </tr>
                         </thead>
                         <tbody>
-                       <? include $insert;
-                       include 'insert/body.php';
-                       ?>
+                       <?    include 'insert/body.php';    ?>
 
                         </tbody>
                     </table>
