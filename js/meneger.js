@@ -17,15 +17,17 @@ function switchHide() { // переключатель визибл
             two.style.display = 'none';
             one.focus();
             one.onblur = function () {
-                if (isNaN(one.value)) {
-                    one.style.backgroundColor = "red";
-                    return;
-                }
-                one.style.backgroundColor = "";
                 one.style.display = 'none';
                 two.style.display = '';
-                if (one.value != two.textContent) {
-                    setNumberKP(one.dataset.main_id, one.value);
+                if (one.name == "numberKPInput") {
+                    if (isNaN(one.value)) {
+                        one.style.backgroundColor = "red";
+                        return;
+                    }
+                    one.style.backgroundColor = "";
+                    if (one.value != two.textContent) {
+                        setNumberKP(one.dataset.main_id, one.value);
+                    }
                 }
             }
         };
@@ -45,7 +47,7 @@ function setNumberKP(idMime, number_kp) { // пишем в базу номер �
 
 function updateMenegerClick() {
     const selects = document.querySelectorAll('.updateMeneger');
-    selects.forEach(select=>{
+    selects.forEach(select => {
         select.onchange = function () {
             updateMeneger(this);
         }
@@ -53,10 +55,10 @@ function updateMenegerClick() {
 }
 function updateMeneger(that) {
     const text = {
-        id:that.dataset.main_id,
-        meneger_id:that.value
-        };
-            httpPost("Router/menegerRouter.php", 'updateMeneger=' + JSON.stringify(text), function (it) {
-                location.reload()
-            })
-    }
+        id: that.dataset.main_id,
+        meneger_id: that.value
+    };
+    httpPost("Router/menegerRouter.php", 'updateMeneger=' + JSON.stringify(text), function (it) {
+        location.reload()
+    })
+}
