@@ -23,18 +23,18 @@ foreach ($mains as $main) {
         <td class="center entryInputTime"><?= $dateMain->Format('H:i') ?></td>
 
         <td>
-            <?
-            if ($admin) {
-                echo '<input type="text" class="entryInput" value="' . $main["name"] . '">';
-            } else echo $main["name"];
-            ?>
+            <?= $admin?'<div class="switchHide">':'' ?>
+            <?= $admin?'<input data-main_id='.$main['main_id'].' type="text" class="entryInput" value="'. $main["name"] .'" name="name" style="display:none;">':'' ?>
+            <div><?= $main["name"]?$main["name"]:'......'?></div>
+            <?= $admin?"</div>":"" ?>
+
         </td>
         <td>
             <?= $admin?"<div class=\"switchHide\">":"" ?>
-            <?= $admin?"<textarea data-main_id=".$main['main_id']." name=\"desc\" style=\"display:none;\">". $main["desc"]." </textarea>":"" ?>
-                <div><?= $main["desc"] ?></div>
+            <?= $admin?"<textarea data-main_id=".$main['main_id']." name=\"desc\" style=\"display:none;\">". $main["desc"]."</textarea>":"" ?>
+                <div><?= $main["desc"]?$main["desc"]:'......' ?></div>
             <?= $admin?"</div>":"" ?>
-                <div>
+
         </td>
         <td class="select">
             <? if ($admin) {
@@ -55,7 +55,7 @@ foreach ($mains as $main) {
                 <div class="switchHide">
                     <input data-main_id="<?= $main['main_id'] ?>" style="display:none;" type="text"
                            class="numberKPInput" value="<?= $main['number_kp'] ?>" name="numberKPInput">
-                    <p style="border-bottom: 1px solid #3a3a3a"><?= $main['number_kp'] ? $main['number_kp'] : 'незадан' ?></p>
+                    <p style="border-bottom: 1px solid #3a3a3a"><?= $main['number_kp'] ? $main['number_kp'] : '......' ?></p>
                 </div>
             <?
             } else {

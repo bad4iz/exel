@@ -35,6 +35,11 @@ function switchHide() { // переключатель визибл
                             updateDesc(this);
                         }
                         break;
+                    case "name":
+                        if (one.value != two.textContent) {
+                            updateName(this);
+                        }
+                        break;
                 }
             }
         }
@@ -80,6 +85,18 @@ function updateDesc(that) {
     console.log(text);
     httpPost("Router/menegerRouter.php", 'updateDesc=' + JSON.stringify(text), function (it) {
         console.log(it);
-        // location.reload()
+        location.reload()
+    })
+}
+function updateName(that) {
+
+    const text = {
+        id: that.dataset.main_id,
+        name: that.value
+    };
+    console.log(text);
+    httpPost("Router/menegerRouter.php", 'updateName=' + JSON.stringify(text), function (it) {
+        console.log(it);
+        location.reload()
     })
 }
