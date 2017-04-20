@@ -15,8 +15,8 @@ $menegers = $menegerModel->getAll();
 
  if ($_COOKIE["user"]) {
 
-//    d($user = unserialize(base64_decode($_COOKIE["user"])));
     $user = unserialize(base64_decode($_COOKIE["user"]));
+
     switch ($user['who']) {
         case 'admin':
             $admin = true;
@@ -36,14 +36,18 @@ $menegers = $menegerModel->getAll();
     $str = base64_encode(serialize($user));
 
     setcookie("user", $str, time()+3600);
-} else if (isset($_GET['admin'])) {
+     header('Location: ' . $_SERVER['HTTP_HOST']);
+
+ } else if (isset($_GET['admin'])) {
     $user = ['who' => 'admin', 'id' => $_GET['admin']];
     $str = base64_encode(serialize($user));
     setcookie("user", $str, time()+3600);
     $admin = true;
-} else exit();
+     header('Location: ' . $_SERVER['HTTP_HOST']);
 
+ } else exit();
 
+d($_SERVER);
 ?>
 <!DOCTYPE html>
 <html lang="en">
