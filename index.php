@@ -13,16 +13,35 @@ $menegerModel = new MenegerModel();
 $mains = $mainModel->getAll();
 $menegers = $menegerModel->getAll();
 
-$m=0;
-$insert ='';
-if (isset($_GET['m'])) {
-    $m = $_GET['m'];
-} else if (isset($_GET['a'])) {
-    $insert = 'insert/admin.php';
+ if ($_COOKIE["user"]) {
+
+//    d($user = unserialize(base64_decode($_COOKIE["user"])));
+    $user = unserialize(base64_decode($_COOKIE["user"]));
+    switch ($user['who']) {
+        case 'admin':
+            $admin = true;
+            break;
+        case 'meneger':
+            $m = (int)$user['id'];
+            break;
+    }
+
+     if (isset($_GET['delete'])) {
+         setcookie("user", "", time()-3600);
+         header('Location: ' . $_SERVER['HTTP_HOST']);
+     }
+
+} else if (isset($_GET['meneger'])) {
+    $user = ['who' => 'meneger', 'id' => $_GET['meneger']];
+    $str = base64_encode(serialize($user));
+
+    setcookie("user", $str, time()+3600);
+} else if (isset($_GET['admin'])) {
+    $user = ['who' => 'admin', 'id' => $_GET['admin']];
+    $str = base64_encode(serialize($user));
+    setcookie("user", $str, time()+3600);
     $admin = true;
-
 } else exit();
-
 
 
 ?>
@@ -41,8 +60,8 @@ if (isset($_GET['m'])) {
 <div class="content container">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="page-title">Static Tables
-                <small>Different variations</small>
+            <h2 class="page-title"><i class="fa fa-list-alt"></i> Таблица Ордера
+                <!--                <small>Different variations</small>-->
             </h2>
         </div>
     </div>
@@ -53,10 +72,11 @@ if (isset($_GET['m'])) {
             <section class="widget">
                 <header>
                     <h4>
-                        <i class="fa fa-list-alt"></i>
-                        Таблица Exel
+
+                        <a href="?delete="> Выйти</a>
                     </h4>
                 </header>
+
                 <div class="body">
                     <table class="table table-striped">
                         <thead>
@@ -72,7 +92,7 @@ if (isset($_GET['m'])) {
                         </tr>
                         </thead>
                         <tbody>
-                       <?    include 'insert/body.php';    ?>
+                        <? include 'insert/body.php'; ?>
 
                         </tbody>
                     </table>
@@ -83,7 +103,6 @@ if (isset($_GET['m'])) {
             </section>
         </div>
     </div>
-
 </div>
 
 

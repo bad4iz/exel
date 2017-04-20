@@ -50,7 +50,7 @@ foreach ($mains as $main) {
 
         </td>
         <td class="center">
-            <? if ($m === $main['menegers_id']) {
+            <? if ($user['id'] === $main['menegers_id']) {
                 ?>
                 <div class="switchHide">
                     <input data-main_id="<?= $main['main_id'] ?>" style="display:none;" type="text"
