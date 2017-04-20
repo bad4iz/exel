@@ -35,7 +35,7 @@ class MainModel extends ExelDb {
         $id = $this->db->addAndGetId($sql);
         return $id;
     }
-   function updateВуыс($id, $desc){
+   function updateDesc($id, $desc){
         $sql = "UPDATE `main` SET `desc`='$desc' WHERE id=$id";
         $id = $this->db->addAndGetId($sql);
         return $id;

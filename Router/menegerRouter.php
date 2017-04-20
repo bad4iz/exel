@@ -27,7 +27,7 @@ foreach ($_POST as $key => $value) {
             break;
         case 'updateDesc':
             $resp = json_decode($value);
-            print $mains->updateMeneger($resp->id, $resp->desc);
+            print $mains->updateDesc($resp->id, $resp->desc);
 //            print $value;
             break;
         case 'updateName':

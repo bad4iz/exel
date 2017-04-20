@@ -29,10 +29,10 @@ foreach ($mains as $main) {
             <?= $admin?"</div>":"" ?>
 
         </td>
-        <td>
-            <?= $admin?"<div class=\"switchHide\">":"" ?>
+        <td style="max-width: 300px;">
+            <?= $admin?"<div  style=\"max-width: 300px\" class=\"switchHide\">":"" ?>
             <?= $admin?"<textarea data-main_id=".$main['main_id']." name=\"desc\" style=\"display:none;\">". $main["desc"]."</textarea>":"" ?>
-                <div><?= $main["desc"]?$main["desc"]:'......' ?></div>
+                <div  style="word-wrap: break-word;"><?= $main["desc"]?$main["desc"]:'......' ?></div>
             <?= $admin?"</div>":"" ?>
 
         </td>
