@@ -31,7 +31,7 @@ foreach ($mains as $main) {
         </td>
         <td>
             <?= $admin?"<div class=\"switchHide\">":"" ?>
-            <?= $admin?"<textarea name=\"desc\" style=\"display:none;\">". $main["desc"]." </textarea>":"" ?>
+            <?= $admin?"<textarea data-main_id=".$main['main_id']." name=\"desc\" style=\"display:none;\">". $main["desc"]." </textarea>":"" ?>
                 <div><?= $main["desc"] ?></div>
             <?= $admin?"</div>":"" ?>
                 <div>

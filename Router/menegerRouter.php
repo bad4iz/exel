@@ -18,10 +18,18 @@ foreach ($_POST as $key => $value) {
         case 'addKp':
             $resp = json_decode($value);
             print $mains->addKp($resp->id, $resp->number_kp);
-        //            print $value;
+//            print $value;
         case 'updateMeneger':
             $resp = json_decode($value);
             print $mains->updateMeneger($resp->id, $resp->meneger_id);
-        //            print $value;
+//            print $value;
+        case 'updateDesc':
+            $resp = json_decode($value);
+            print $mains->updateMeneger($resp->id, $resp->desc);
+//            print $value;
+        case 'updateName':
+            $resp = json_decode($value);
+            print $mains->updateMeneger($resp->id, $resp->name);
+//            print $value;
     }
 }

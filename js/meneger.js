@@ -19,24 +19,32 @@ function switchHide() { // переключатель визибл
             one.onblur = function () {
                 one.style.display = 'none';
                 two.style.display = '';
-                if (one.name == "numberKPInput") {
-                    if (isNaN(one.value)) {
-                        one.style.backgroundColor = "red";
-                        return;
-                    }
-                    one.style.backgroundColor = "";
-                    if (one.value != two.textContent) {
-                        setNumberKP(one.dataset.main_id, one.value);
-                    }
+                switch (one.name) {
+                    case "numberKPInput":
+                        if (isNaN(one.value)) {
+                            one.style.backgroundColor = "red";
+                            return;
+                        }
+                        one.style.backgroundColor = "";
+                        if (one.value != two.textContent) {
+                            setNumberKP(one.dataset.main_id, one.value);
+                        }
+                        break;
+                    case "desc":
+                        if (one.value != two.textContent) {
+                            updateDesc(this);
+                        }
+                        break;
                 }
             }
-        };
+        }
     });
 }
 
-function setNumberKP(idMime, number_kp) { // пишем в базу номер кп
+
+function setNumberKP(idMine, number_kp) { // пишем в базу номер кп
     const text = {
-        id: idMime,
+        id: idMine,
         number_kp: number_kp
     };
     httpPost("Router/menegerRouter.php", 'addKp=' + JSON.stringify(text), function (it) {
@@ -60,5 +68,18 @@ function updateMeneger(that) {
     };
     httpPost("Router/menegerRouter.php", 'updateMeneger=' + JSON.stringify(text), function (it) {
         location.reload()
+    })
+}
+
+function updateDesc(that) {
+
+    const text = {
+        id: that.dataset.main_id,
+        desc: that.value
+    };
+    console.log(text);
+    httpPost("Router/menegerRouter.php", 'updateDesc=' + JSON.stringify(text), function (it) {
+        console.log(it);
+        // location.reload()
     })
 }
