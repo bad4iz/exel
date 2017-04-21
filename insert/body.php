@@ -17,7 +17,7 @@ foreach ($mains as $main) {
 
     <tr>
         <td><?= $main['main_id'] ?></td>
-        <td class="center entryInputData">
+        <td class="center entryInputData max50">
             <?= $dateMain->Format('Y-m-d'); ?>
         </td>
         <td class="center entryInputTime"><?= $dateMain->Format('H:i') ?></td>
