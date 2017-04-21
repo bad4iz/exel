@@ -43,7 +43,7 @@ if ($_COOKIE["user"]) {
         setcookie("user", $str, time()+9999999);
     $admin = true;
 
-} else exit();
+}
 
 ?>
 <!DOCTYPE html>

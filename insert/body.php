@@ -53,7 +53,7 @@ foreach ($mains as $main) {
             <? if ($user['id'] === $main['menegers_id']) {
                 ?>
                 <div class="switchHide">
-                    <input data-main_id="<?= $main['main_id'] ?>" style="display:none;" type="text"
+                    <input maxlength="10" data-main_id="<?= $main['main_id'] ?>" style="display:none;" type="text"
                            class="numberKPInput" value="<?= $main['number_kp'] ?>" name="numberKPInput">
                     <p style="border-bottom: 1px solid #3a3a3a"><?= $main['number_kp'] ? $main['number_kp'] : '......' ?></p>
                 </div>

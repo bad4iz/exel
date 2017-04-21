@@ -30,21 +30,30 @@ function switchHide() { // переключатель визибл
             one.onblur = job;
 
             function job() {
-                one.style.display = 'none';
-                two.style.display = '';
+
                 switch (one.name) {
                     case "numberKPInput":
-                        if (one.value != two.textContent) {
-                            setNumberKP(one.dataset.main_id, one.value);
+                        if (one.value.length < 10) {
+                            console.log(5555555555);
+                            two.style.display = '';
+                            one.style.display = 'none';
+                            if (one.value != two.textContent) {
+                                setNumberKP(one.dataset.main_id, one.value);
+
+                            }
                         }
                         break;
                     case "desc":
                         if (one.value != two.textContent) {
+                            two.style.display = '';
+                            one.style.display = 'none';
                             updateDesc(this);
                         }
                         break;
                     case "name":
                         if (one.value != two.textContent) {
+                            two.style.display = '';
+                            one.style.display = 'none';
                             updateName(this);
                         }
                         break;
@@ -111,9 +120,11 @@ function updateName(that) {
 
 function addTrClick() {
     button = document.getElementById('addTr');
-    button.onclick = function () {
-        httpPost("Router/menegerRouter.php", 'createItem=' + JSON.stringify("createItem"), function (it) {
-            location.reload()
-        })
+    if (button) {
+        button.onclick = function () {
+            httpPost("Router/menegerRouter.php", 'createItem=' + JSON.stringify("createItem"), function (it) {
+                location.reload()
+            })
+        }
     }
 }
