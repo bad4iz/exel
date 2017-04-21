@@ -17,32 +17,45 @@ function switchHide() { // переключатель визибл
             one.style.display = '';
             two.style.display = 'none';
             one.focus();
-            one.onblur = function () {
-                one.style.display = 'none';
-                two.style.display = '';
-                switch (one.name) {
-                    case "numberKPInput":
-                        if (isNaN(one.value)) {
-                            one.style.backgroundColor = "red";
-                            return;
-                        }
-                        one.style.backgroundColor = "";
-                        if (one.value != two.textContent) {
-                            setNumberKP(one.dataset.main_id, one.value);
-                        }
-                        break;
-                    case "desc":
-                        if (one.value != two.textContent) {
-                            updateDesc(this);
-                        }
-                        break;
-                    case "name":
-                        if (one.value != two.textContent) {
-                            updateName(this);
-                        }
-                        break;
+
+
+            document.onkeyup = function (e) {
+                e = e || window.event;
+                if (e.keyCode === 13) {
+                    job();
                 }
-            }
+                return false;
+            };
+
+
+            one.onblur = job;
+
+                function job () {
+                    one.style.display = 'none';
+                    two.style.display = '';
+                    switch (one.name) {
+                        case "numberKPInput":
+                            if (isNaN(one.value)) {
+                                one.style.backgroundColor = "red";
+                                return;
+                            }
+                            one.style.backgroundColor = "";
+                            if (one.value != two.textContent) {
+                                setNumberKP(one.dataset.main_id, one.value);
+                            }
+                            break;
+                        case "desc":
+                            if (one.value != two.textContent) {
+                                updateDesc(this);
+                            }
+                            break;
+                        case "name":
+                            if (one.value != two.textContent) {
+                                updateName(this);
+                            }
+                            break;
+                    }
+                }
         }
     });
 }

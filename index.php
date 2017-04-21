@@ -13,7 +13,7 @@ $menegerModel = new MenegerModel();
 $mains = $mainModel->getAll();
 $menegers = $menegerModel->getAll();
 
- if ($_COOKIE["user"]) {
+if ($_COOKIE["user"]) {
 
     $user = unserialize(base64_decode($_COOKIE["user"]));
 
@@ -26,24 +26,25 @@ $menegers = $menegerModel->getAll();
             break;
     }
 
-     if (isset($_GET['delete'])) {
-         setcookie("user", "", time()-3600);
-         header('Location: ' . $_SERVER['HTTP_HOST']);
-     }
+    if (isset($_GET['delete'])) {
+        setcookie("user", "", time()-3600);
+        header('Location: /');
+        unset($_GET);
+    }
+
 
 } else if (isset($_GET['meneger'])) {
     $user = ['who' => 'meneger', 'id' => $_GET['meneger']];
     $str = base64_encode(serialize($user));
+    setcookie("user", $str, time()+9999999999);
 
-    setcookie("user", $str, time()+3600);
-
- } else if (isset($_GET['admin'])) {
+} else if (isset($_GET['admin'])) {
     $user = ['who' => 'admin', 'id' => $_GET['admin']];
     $str = base64_encode(serialize($user));
-    setcookie("user", $str, time()+3600);
+        setcookie("user", $str, time()+999999999);
     $admin = true;
 
- } else exit();
+} else exit();
 
 ?>
 <!DOCTYPE html>
@@ -106,7 +107,7 @@ $menegers = $menegerModel->getAll();
     </div>
 </div>
 
-
+<?//d($_SERVER)?>
 <!-- jquery and friends -->
 <script src="link/lib/jquery/jquery-2.0.3.min.js"></script>
 
