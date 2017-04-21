@@ -35,5 +35,9 @@ foreach ($_POST as $key => $value) {
             print $mains->updateName($resp->id, $resp->name);
 //            print $value;
             break;
+        case 'createItem':
+            print $mains->createItem();
+//            print $value;
+            break;
     }
 }

@@ -76,7 +76,7 @@ if ($admin) { ?>
         <td></td>
         <td></td>
         <td></td>
-        <td><span class="badge badge-success"><i class="fa fa-plus"></i></span></td>
+        <td><span id="addTr" class="badge badge-success"><i class="fa fa-plus"></i></span></td>
     </tr>
 <? } ?>
 <script src="/js/meneger.js">

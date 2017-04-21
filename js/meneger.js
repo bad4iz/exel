@@ -4,7 +4,8 @@
 window.onload = function () {
 
     switchHide();
-    updateMenegerClick()
+    updateMenegerClick();
+    addTrClick()
 };
 
 
@@ -99,4 +100,13 @@ function updateName(that) {
         console.log(it);
         location.reload()
     })
+}
+
+function addTrClick() {
+    button =  document.getElementById('addTr');
+    button.onclick = function () {
+        httpPost("Router/menegerRouter.php", 'createItem=' + JSON.stringify("createItem"), function (it) {
+            location.reload()
+        })
+    }
 }

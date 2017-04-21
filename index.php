@@ -36,14 +36,12 @@ $menegers = $menegerModel->getAll();
     $str = base64_encode(serialize($user));
 
     setcookie("user", $str, time()+3600);
-     header('Location: ' . $_SERVER['HTTP_HOST']);
 
  } else if (isset($_GET['admin'])) {
     $user = ['who' => 'admin', 'id' => $_GET['admin']];
     $str = base64_encode(serialize($user));
     setcookie("user", $str, time()+3600);
     $admin = true;
-     header('Location: ' . $_SERVER['HTTP_HOST']);
 
  } else exit();
 

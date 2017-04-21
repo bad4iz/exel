@@ -35,7 +35,10 @@ class Select implements View {
 
     function view($text) {
         echo '<div class="controls" >
-            <select ' . $text . '  data-style="btn-success" class="updateMeneger selectpicker">';
+            <select ' . $text . '  data-style="btn-success" class="updateMeneger selectpicker">
+            <option >Назначить</option>
+            ';
+
         foreach ($this->models as $model) {
             if ($this->selected == $model[$this->nameId]) {
                 $sel = 'selected';
