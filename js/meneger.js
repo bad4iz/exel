@@ -34,11 +34,6 @@ function switchHide() { // переключатель визибл
                 two.style.display = '';
                 switch (one.name) {
                     case "numberKPInput":
-                        if (isNaN(one.value)) {
-                            one.style.backgroundColor = "red";
-                            return;
-                        }
-                        one.style.backgroundColor = "";
                         if (one.value != two.textContent) {
                             setNumberKP(one.dataset.main_id, one.value);
                         }

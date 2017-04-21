@@ -1,5 +1,4 @@
 <?
-
 use exel\model\MainModel;
 use exel\model\MenegerModel;
 use exel\VIews\Select;
@@ -36,12 +35,12 @@ if ($_COOKIE["user"]) {
 } else if (isset($_GET['meneger'])) {
     $user = ['who' => 'meneger', 'id' => $_GET['meneger']];
     $str = base64_encode(serialize($user));
-    setcookie("user", $str, time()+9999999999);
+    setcookie("user", $str, time()+9999999);
 
 } else if (isset($_GET['admin'])) {
     $user = ['who' => 'admin', 'id' => $_GET['admin']];
     $str = base64_encode(serialize($user));
-        setcookie("user", $str, time()+999999999);
+        setcookie("user", $str, time()+9999999);
     $admin = true;
 
 } else exit();
@@ -56,7 +55,7 @@ if ($_COOKIE["user"]) {
 
 
     <link href="/css/myCss.css" rel="stylesheet">
-    <title>Title</title>
+    <title>Заявки с ордерa</title>
 </head>
 <body>
 <div class="content container">
