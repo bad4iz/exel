@@ -10,11 +10,7 @@ function myAutoLoad($className) {
     $ind = strpos($className, '/');
     if ($ind) {
         $className = substr($className, $ind + 1);
-
     }
-    //    $className = 'Model/MainModel';
-
-
     require_once $className . '.php';
 }
 
