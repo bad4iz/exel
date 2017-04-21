@@ -45,7 +45,6 @@ $menegers = $menegerModel->getAll();
 
  } else exit();
 
-d($_SERVER);
 ?>
 <!DOCTYPE html>
 <html lang="en">
