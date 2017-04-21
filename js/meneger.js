@@ -27,35 +27,34 @@ function switchHide() { // переключатель визибл
                 return false;
             };
 
-
             one.onblur = job;
 
-                function job () {
-                    one.style.display = 'none';
-                    two.style.display = '';
-                    switch (one.name) {
-                        case "numberKPInput":
-                            if (isNaN(one.value)) {
-                                one.style.backgroundColor = "red";
-                                return;
-                            }
-                            one.style.backgroundColor = "";
-                            if (one.value != two.textContent) {
-                                setNumberKP(one.dataset.main_id, one.value);
-                            }
-                            break;
-                        case "desc":
-                            if (one.value != two.textContent) {
-                                updateDesc(this);
-                            }
-                            break;
-                        case "name":
-                            if (one.value != two.textContent) {
-                                updateName(this);
-                            }
-                            break;
-                    }
+            function job() {
+                one.style.display = 'none';
+                two.style.display = '';
+                switch (one.name) {
+                    case "numberKPInput":
+                        if (isNaN(one.value)) {
+                            one.style.backgroundColor = "red";
+                            return;
+                        }
+                        one.style.backgroundColor = "";
+                        if (one.value != two.textContent) {
+                            setNumberKP(one.dataset.main_id, one.value);
+                        }
+                        break;
+                    case "desc":
+                        if (one.value != two.textContent) {
+                            updateDesc(this);
+                        }
+                        break;
+                    case "name":
+                        if (one.value != two.textContent) {
+                            updateName(this);
+                        }
+                        break;
                 }
+            }
         }
     });
 }
@@ -116,7 +115,7 @@ function updateName(that) {
 }
 
 function addTrClick() {
-    button =  document.getElementById('addTr');
+    button = document.getElementById('addTr');
     button.onclick = function () {
         httpPost("Router/menegerRouter.php", 'createItem=' + JSON.stringify("createItem"), function (it) {
             location.reload()
