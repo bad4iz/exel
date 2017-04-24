@@ -13,7 +13,8 @@ class MainModel extends ExelDb {
     private $table = 'main';
 
     function getAll() {
-        $sql = "SELECT main.id as main_id, main.dateMain, main.name, main.desc, menegers.id as menegers_id, menegers.name as meneger_name,   main.number_kp, main.date_kp
+        $sql = "SELECT main.id as main_id, main.dateMain, main.name, main.desc, menegers.id as menegers_id, 
+                        menegers.name as meneger_name,   main.number_kp, main.desc_kp, main.date_kp
                                         FROM main
                       LEFT JOIN menegers ON  ($this->table.meneger_id =  menegers.id)";
         $items = $this->db->selectAssoc($sql);
@@ -43,6 +44,11 @@ class MainModel extends ExelDb {
 
     function updateName($id, $name){
         $sql = "UPDATE `main` SET `name`='$name',`dateMain`=now() WHERE id=$id";
+        $id = $this->db->addAndGetId($sql);
+        return $id;
+    }
+   function updateDeskKp($id, $desc){
+        $sql = "UPDATE `main` SET `desc_kp`='$desc' WHERE id=$id";
         $id = $this->db->addAndGetId($sql);
         return $id;
     }

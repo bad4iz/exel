@@ -62,7 +62,22 @@ foreach ($mains as $main) {
                 echo $main["number_kp"];
             }
             ?>
-        </td class="center">
+        </td >
+        <td style="max-width: 300px;">
+            <? if ($user['id'] === $main['menegers_id']) {
+                ?>
+                <div class="switchHide" style="max-width: 300px">
+                    <textarea  data-main_id="<?= $main['main_id'] ?>" style="display:none;" type="text"
+                              class="descKp"  name="descKp"><?= $main['desc_kp'] ?></textarea>
+                    <p style="border-bottom: 1px solid #3a3a3a; word-wrap: break-word;"><?= $main['desc_kp'] ? $main['desc_kp'] : '......' ?></p>
+                </div>
+            <?
+            } else {?>
+             <div style="word-wrap: break-word;"> <?= $main["desc_kp"];?></div>
+
+            <?}
+            ?>
+        </td >
         <td class="dataMeneger"><?= $dateKp ?></td>
     </tr>
 <? } // конец for

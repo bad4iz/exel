@@ -34,7 +34,6 @@ function switchHide() { // переключатель визибл
                 switch (one.name) {
                     case "numberKPInput":
                         if (one.value.length < 10) {
-                            console.log(5555555555);
                             two.style.display = '';
                             one.style.display = 'none';
                             if (one.value != two.textContent) {
@@ -57,6 +56,13 @@ function switchHide() { // переключатель визибл
                             updateName(this);
                         }
                         break;
+                    case "descKp":
+                        if (one.value != two.textContent) {
+                            two.style.display = '';
+                            one.style.display = 'none';
+                            updateDescKp(this);
+                        }
+                        break;
                 }
             }
         }
@@ -70,7 +76,7 @@ function setNumberKP(idMine, number_kp) { // пишем в базу номер �
         number_kp: number_kp
     };
     httpPost("Router/menegerRouter.php", 'addKp=' + JSON.stringify(text), function (it) {
-        location.reload()
+        location.reload();
     })
 
 }
@@ -111,9 +117,22 @@ function updateName(that) {
         id: that.dataset.main_id,
         name: that.value
     };
-    console.log(text);
+    // console.log(text);
     httpPost("Router/menegerRouter.php", 'updateName=' + JSON.stringify(text), function (it) {
-        console.log(it);
+        // console.log(it);
+        location.reload()
+    })
+}
+
+
+function updateDescKp(that) {
+    const text = {
+        id: that.dataset.main_id,
+        descKp: that.value
+    };
+    // console.log(text);
+    httpPost("Router/menegerRouter.php", 'updateDescKp=' + JSON.stringify(text), function (it) {
+        // console.log(it);
         location.reload()
     })
 }

@@ -12,6 +12,8 @@ $menegerModel = new MenegerModel();
 $mains = $mainModel->getAll();
 $menegers = $menegerModel->getAll();
 
+
+
 if ($_COOKIE["user"]) {
 
     $user = unserialize(base64_decode($_COOKIE["user"]));
@@ -89,6 +91,7 @@ if ($_COOKIE["user"]) {
                             <th>Краткое содежание заявки</th>
                             <th>ФИО ответственого лица</th>
                             <th>Номер КП</th>
+                            <th>Описание КП</th>
                             <th>Дата внесения КП</th>
                         </tr>
                         </thead>
