@@ -79,20 +79,25 @@ if ($_COOKIE["user"]) {
                         <a href="?delete="> Выйти</a>
                     </h4>
                 </header>
-
+                <style>
+                    select, textarea {
+                        color: initial;
+                        font: inherit;
+                        margin: 0;
+                    }
+                </style>
                 <div class="body">
-                    <table class="table table-striped">
+                    <table id="datatable-table" class="table table-striped">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Дата поступления заявки</th>
-                            <th>Время поступления заявки</th>
-                            <th>Наименование контрагента</th>
-                            <th>Краткое содежание заявки</th>
-                            <th>ФИО ответственого лица</th>
-                            <th>Номер КП</th>
-                            <th>Описание КП</th>
-                            <th>Дата внесения КП</th>
+                            <th  style="max-width: 100px !important; text-align: center;">Дата заявки</th>
+                            <th style="text-align: center;">Наименование контрагента</th>
+                            <th style="text-align: center;">Краткое содежание заявки</th>
+                            <th style="text-align: center;">Ответственое лицо</th>
+                            <th style="text-align: center;">Номер КП</th>
+                            <th style="text-align: center;">Описание КП</th>
+                            <th style="text-align: center;">Дата внесения КП</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -120,11 +125,47 @@ if ($_COOKIE["user"]) {
 <script src="link/lib/bootstrap-datepicker.js"></script>
 <script src="link/lib/bootstrap-select/bootstrap-select.js"></script>
 
-<!-- page specific -->
-<script src="link/js/forms-article.js"></script>
+
+<!-- jquery plugins -->
+<!--<script src="link/lib/jquery-maskedinput/jquery.maskedinput.js"></script>-->
+<!--<script src="link/lib/parsley/parsley.js"> </script>-->
+<!--<script src="link/lib/icheck.js/jquery.icheck.js"></script>-->
+<script src="link/lib/select2.js"></script>
+<script src="link/lib/jquery.dataTables.min.js"></script>
+
+<!--backbone and friends -->
+<script src="link/lib/backbone/underscore-min.js"></script>
+<script src="link/lib/backbone/backbone-min.js"></script>
+<script src="link/lib/backbone/backbone-pageable.js"></script>
+<script src="link/lib/backgrid/backgrid.js"></script>
+<script src="link/lib/backgrid/backgrid-paginator.js"></script>
+
+<!-- bootstrap default plugins -->
+<script src="link/lib/bootstrap/transition.js"></script>
+<script src="link/lib/bootstrap/collapse.js"></script>
+<script src="link/lib/bootstrap/alert.js"></script>
+<script src="link/lib/bootstrap/tooltip.js"></script>
+<script src="link/lib/bootstrap/popover.js"></script>
+<script src="link/lib/bootstrap/button.js"></script>
+<script src="link/lib/bootstrap/dropdown.js"></script>
+<script src="link/lib/bootstrap/modal.js"></script>
+<script src="link/lib/bootstrap/tab.js"> </script>
+
+<!-- basic application js-->
+<script src="link/js/app.js"></script>
+<!--<script src="link/js/settings.js"></script>-->
+
+<!-- page-specific js -->
+<!--<script src="link/js/forms-article.js"></script>-->
+<script src="link/js/tables-dynamic.js"></script>
+
+
+
 
 
 <script src="js/lib/lib.js"></script>
 <script src="js/meneger.js"></script>
+
+
 </body>
 </html>

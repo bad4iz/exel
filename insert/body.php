@@ -17,10 +17,9 @@ foreach ($mains as $main) {
 
     <tr>
         <td><?= $main['main_id'] ?></td>
-        <td class="center entryInputData max50">
-            <?= $dateMain->Format('Y-m-d'); ?>
+        <td class="center entryInputData max50" style="max-width: 100px !important; ">
+            <?= $dateMain->Format('Y-m-d'); ?> <?= $dateMain->Format('H:i') ?>
         </td>
-        <td class="center entryInputTime"><?= $dateMain->Format('H:i') ?></td>
 
         <td>
             <?= $admin?'<div class="switchHide">':'' ?>

@@ -43,23 +43,23 @@ function switchHide() { // переключатель визибл
                         }
                         break;
                     case "desc":
-                        if (one.value != two.textContent) {
                             two.style.display = '';
                             one.style.display = 'none';
+                        if (one.value != two.textContent) {
                             updateDesc(this);
                         }
                         break;
                     case "name":
-                        if (one.value != two.textContent) {
                             two.style.display = '';
                             one.style.display = 'none';
+                        if (one.value != two.textContent) {
                             updateName(this);
                         }
                         break;
                     case "descKp":
-                        if (one.value != two.textContent) {
                             two.style.display = '';
                             one.style.display = 'none';
+                        if (one.value != two.textContent) {
                             updateDescKp(this);
                         }
                         break;
