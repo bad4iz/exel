@@ -96,7 +96,7 @@ if ($_COOKIE["user"]) {
                             <th style="text-align: center;">Краткое содежание заявки</th>
                             <th style="text-align: center;">Ответственое лицо</th>
                             <th style="text-align: center;">Номер КП</th>
-                            <th style="text-align: center;">Описание КП</th>
+                            <th style="text-align: center;">Комментарий КП</th>
                             <th style="text-align: center;">Дата внесения КП</th>
                         </tr>
                         </thead>
