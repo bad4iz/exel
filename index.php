@@ -87,10 +87,15 @@ if ($_COOKIE["user"]) {
                     }
                 </style>
                 <div class="body">
+                    <?
+                    rsort($mains);
+                    d($mains);
+
+                    ?>
                     <table id="datatable-table" class="table table-striped">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th class="no-sort">#</th>
                             <th  style="max-width: 100px !important; text-align: center;">Дата заявки</th>
                             <th style="text-align: center;">Наименование контрагента</th>
                             <th style="text-align: center;">Краткое содежание заявки</th>
@@ -119,40 +124,40 @@ if ($_COOKIE["user"]) {
 <script src="link/lib/jquery/jquery-2.0.3.min.js"></script>
 
 <!-- bootstrap default plugins -->
-<script src="link/lib/bootstrap/dropdown.js"></script>
+<!--<script src="link/lib/bootstrap/dropdown.js"></script>-->
 
 <!-- bootstrap custom plugins -->
-<script src="link/lib/bootstrap-datepicker.js"></script>
-<script src="link/lib/bootstrap-select/bootstrap-select.js"></script>
+<!--<script src="link/lib/bootstrap-datepicker.js"></script>-->
+<!--<script src="link/lib/bootstrap-select/bootstrap-select.js"></script>-->
 
 
 <!-- jquery plugins -->
 <!--<script src="link/lib/jquery-maskedinput/jquery.maskedinput.js"></script>-->
 <!--<script src="link/lib/parsley/parsley.js"> </script>-->
 <!--<script src="link/lib/icheck.js/jquery.icheck.js"></script>-->
-<script src="link/lib/select2.js"></script>
+<!--<script src="link/lib/select2.js"></script>-->
 <script src="link/lib/jquery.dataTables.min.js"></script>
 
 <!--backbone and friends -->
-<script src="link/lib/backbone/underscore-min.js"></script>
-<script src="link/lib/backbone/backbone-min.js"></script>
-<script src="link/lib/backbone/backbone-pageable.js"></script>
-<script src="link/lib/backgrid/backgrid.js"></script>
-<script src="link/lib/backgrid/backgrid-paginator.js"></script>
-
+<!--<script src="link/lib/backbone/underscore-min.js"></script>-->
+<!--<script src="link/lib/backbone/backbone-min.js"></script>-->
+<!--<script src="link/lib/backbone/backbone-pageable.js"></script>-->
+<!--<script src="link/lib/backgrid/backgrid.js"></script>-->
+<!--<script src="link/lib/backgrid/backgrid-paginator.js"></script>-->
+<!---->
 <!-- bootstrap default plugins -->
-<script src="link/lib/bootstrap/transition.js"></script>
-<script src="link/lib/bootstrap/collapse.js"></script>
-<script src="link/lib/bootstrap/alert.js"></script>
-<script src="link/lib/bootstrap/tooltip.js"></script>
-<script src="link/lib/bootstrap/popover.js"></script>
-<script src="link/lib/bootstrap/button.js"></script>
-<script src="link/lib/bootstrap/dropdown.js"></script>
-<script src="link/lib/bootstrap/modal.js"></script>
-<script src="link/lib/bootstrap/tab.js"> </script>
+<!--<script src="link/lib/bootstrap/transition.js"></script>-->
+<!--<script src="link/lib/bootstrap/collapse.js"></script>-->
+<!--<script src="link/lib/bootstrap/alert.js"></script>-->
+<!--<script src="link/lib/bootstrap/tooltip.js"></script>-->
+<!--<script src="link/lib/bootstrap/popover.js"></script>-->
+<!--<script src="link/lib/bootstrap/button.js"></script>-->
+<!--<script src="link/lib/bootstrap/dropdown.js"></script>-->
+<!--<script src="link/lib/bootstrap/modal.js"></script>-->
+<!--<script src="link/lib/bootstrap/tab.js"> </script>-->
 
 <!-- basic application js-->
-<script src="link/js/app.js"></script>
+<!--<script src="link/js/app.js"></script>-->
 <!--<script src="link/js/settings.js"></script>-->
 
 <!-- page-specific js -->

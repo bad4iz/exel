@@ -202,14 +202,14 @@ $(function(){
             }
         });
 
-        $("#datatable-table").dataTable({
-            "sDom": "<'row table-top-control'<'col-md-6 hidden-xs per-page-selector'l><'col-md-6'f>r>t<'row table-bottom-control'<'col-md-6'i><'col-md-6'p>>",
-            "oLanguage": {
-                "sLengthMenu": "_MENU_ &nbsp; записей на странице"
-            },
-            "aoColumns": unsortableColumns
-        });
+        // $("#datatable-table").dataTable({
+        //
+        //     "pageLength": 50
+        // });
 
+        $('#datatable-table').dataTable( {
+            "pageLength": 50
+        } );
         // var unsortableColumns2 = [];
         // $('#datatable-table-2').find('thead th').each(function(){
         //     if ($(this).hasClass( 'no-sort')){

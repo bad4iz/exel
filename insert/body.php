@@ -3,6 +3,7 @@ use exel\VIews\Select;
 
 $menedger;
 $selectMeneger = [];
+
 foreach ($mains as $main) {
     $dateMain = new DateTime($main['dateMain']);
 
