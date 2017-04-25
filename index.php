@@ -92,7 +92,7 @@ if ($_COOKIE["user"]) {
                     d($mains);
 
                     ?>
-                    <table id="datatable-table" class="table table-striped">
+                    <table id="myTable" class="table table-striped">
                         <thead>
                         <tr>
                             <th class="no-sort">#</th>
@@ -162,7 +162,21 @@ if ($_COOKIE["user"]) {
 
 <!-- page-specific js -->
 <!--<script src="link/js/forms-article.js"></script>-->
-<script src="link/js/tables-dynamic.js"></script>
+
+
+
+<script src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+
+<script>
+    $(document).ready(function(){
+        $('#myTable').DataTable({
+            "pageLength": 50
+        });
+    });
+</script>
+<!--<script src="link/js/tables-dynamic.js"></script>-->
 
 
 
