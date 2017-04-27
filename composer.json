@@ -7,6 +7,7 @@
         }
     ],
     "require": {
-        "kint-php/kint": "^1.1"
+        "kint-php/kint": "^1.1",
+        "phpoffice/phpexcel": "^1.8"
     }
 }

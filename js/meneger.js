@@ -1,5 +1,3 @@
-
-
 function setNumberKP(idMine, numberKp) { // пишем в базу номер кп
     const text = {
         id: idMine,
