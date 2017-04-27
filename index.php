@@ -76,7 +76,7 @@ if ($_COOKIE["user"]) {
                 <header>
                     <h4>
 
-                        <a href="?delete="> Выйти</a>
+<!--                        <a href="?delete="> Выйти</a>-->
                     </h4>
                 </header>
                 <style>
@@ -89,7 +89,7 @@ if ($_COOKIE["user"]) {
                 <div class="body">
                     <?
                     rsort($mains);
-                    d($mains);
+//                    d($mains);
 
                     ?>
                     <table id="myTable" class="table table-striped">
@@ -168,17 +168,14 @@ if ($_COOKIE["user"]) {
 <script src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></script>
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
-
 <script>
     $(document).ready(function(){
         $('#myTable').DataTable({
-            "pageLength": 50
+            "pageLength": 50,
+            "order": [[ 1, "desc" ]]
         });
     });
 </script>
-<!--<script src="link/js/tables-dynamic.js"></script>-->
-
-
 
 
 
