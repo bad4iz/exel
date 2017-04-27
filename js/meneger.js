@@ -1,70 +1,58 @@
-/**
- * Created by bad4iz on 16.04.2017.
- */
-window.onload = function () {
 
-    switchHide();
-    updateMenegerClick();
-    addTrClick()
-};
+function job() {
 
+    switch (one.name) {
+        case 'numberKPInput':
+            if (one.value.length < 10) {
+                two.style.display = '';
+                one.style.display = 'none';
+                if (one.value !== two.textContent) {
+                    setNumberKP(one.dataset.main_id, one.value);
+
+                }
+            }
+            break;
+        case 'desc':
+            two.style.display = '';
+            one.style.display = 'none';
+            if (one.value != two.textContent) {
+                updateDesc(this);
+            }
+            break;
+        case 'name':
+            two.style.display = '';
+            one.style.display = 'none';
+            if (one.value != two.textContent) {
+                updateName(this);
+            }
+            break;
+        case "descKp":
+            two.style.display = '';
+            one.style.display = 'none';
+            if (one.value != two.textContent) {
+                updateDescKp(this);
+            }
+            break;
+    }
+}
 
 function switchHide() { // переключатель визибл
     const toggles = document.querySelectorAll('.switchHide');
     toggles.forEach(toggle => {
-        toggle.ondblclick = function () {
+        toggle.ondblclick = function() {
             const [one, two] = toggle.children;
             one.style.display = '';
             two.style.display = 'none';
             one.focus();
 
-
-            document.onkeyup = function (e) {
-                e = e || window.event;
+            document.onkeyup = function(event) {
+                const e = event || window.event;
                 if (e.keyCode === 13) {
                     job();
                 }
                 return false;
             };
-
             one.onblur = job;
-
-            function job() {
-
-                switch (one.name) {
-                    case "numberKPInput":
-                        if (one.value.length < 10) {
-                            two.style.display = '';
-                            one.style.display = 'none';
-                            if (one.value != two.textContent) {
-                                setNumberKP(one.dataset.main_id, one.value);
-
-                            }
-                        }
-                        break;
-                    case "desc":
-                            two.style.display = '';
-                            one.style.display = 'none';
-                        if (one.value != two.textContent) {
-                            updateDesc(this);
-                        }
-                        break;
-                    case "name":
-                            two.style.display = '';
-                            one.style.display = 'none';
-                        if (one.value != two.textContent) {
-                            updateName(this);
-                        }
-                        break;
-                    case "descKp":
-                            two.style.display = '';
-                            one.style.display = 'none';
-                        if (one.value != two.textContent) {
-                            updateDescKp(this);
-                        }
-                        break;
-                }
-            }
         }
     });
 }
@@ -118,10 +106,10 @@ function updateName(that) {
         name: that.value
     };
     // console.log(text);
-    httpPost("Router/menegerRouter.php", 'updateName=' + JSON.stringify(text), function (it) {
+    httpPost('Router/menegerRouter.php', 'updateName=' + JSON.stringify(text), function(it) {
         // console.log(it);
-        location.reload()
-    })
+        location.reload();
+    });
 }
 
 
@@ -131,19 +119,25 @@ function updateDescKp(that) {
         descKp: that.value
     };
     // console.log(text);
-    httpPost("Router/menegerRouter.php", 'updateDescKp=' + JSON.stringify(text), function (it) {
+    httpPost('Router/menegerRouter.php', 'updateDescKp=' + JSON.stringify(text), function(it) {
         // console.log(it);
-        location.reload()
-    })
+        location.reload();
+    });
 }
 
 function addTrClick() {
     button = document.getElementById('addTr');
     if (button) {
-        button.onclick = function () {
-            httpPost("Router/menegerRouter.php", 'createItem=' + JSON.stringify("createItem"), function (it) {
-                location.reload()
-            })
-        }
+        button.onclick = function() {
+            httpPost('Router/menegerRouter.php', 'createItem=' + JSON.stringify('createItem'), function(it) {
+                location.reload();
+            });
+        };
     }
 }
+
+window.onload = function() {
+    switchHide();
+    updateMenegerClick();
+    addTrClick();
+};
