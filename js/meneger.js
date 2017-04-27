@@ -1,12 +1,13 @@
+
+
 function setNumberKP(idMine, numberKp) { // пишем в базу номер кп
     const text = {
         id: idMine,
         numberKp: numberKp
     };
-    httpPost('Router/menegerRouter.php', 'addKp=' + JSON.stringify(text), function(it) {
+    httpPost('Router/menegerRouter.php', 'addKp=' + JSON.stringify(text), function() {
         location.reload();
     });
-
 }
 
 function updateMeneger(that) {
