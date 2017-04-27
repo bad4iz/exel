@@ -17,12 +17,12 @@ foreach ($_POST as $key => $value) {
     switch ($key) {
         case 'addKp':
             $resp = json_decode($value);
-            print $mains->addKp($resp->id, $resp->number_kp);
+            print $mains->addKp($resp->id, $resp->numberKp);
             //            print $value;
             break;
         case 'updateMeneger':
             $resp = json_decode($value);
-            print $mains->updateMeneger($resp->id, $resp->meneger_id);
+            print $mains->updateMeneger($resp->id, $resp->menegerId);
             //            print $value;
             break;
         case 'updateDesc':
