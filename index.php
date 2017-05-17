@@ -67,6 +67,7 @@ if ($_COOKIE["user"]) {
                 <!--                <small>Different variations</small>-->
             </h2>
         </div>
+
     </div>
 
     <div class="row">
@@ -75,6 +76,12 @@ if ($_COOKIE["user"]) {
             <section class="widget">
                 <header>
                     <h4>
+                        <div style="text-align: end">
+                            <?
+                            if ($admin) { ?>
+                                <p>Добавить сторку <span id="addTr" class="badge badge-success"><i class="fa fa-plus"></i></span></p>
+                            <? } ?>
+                        </div>
 
 <!--                        <a href="?delete="> Выйти</a>-->
                     </h4>
@@ -113,6 +120,12 @@ if ($_COOKIE["user"]) {
                     <blockquote>
                         сноска сюда что нибудь вставить
                     </blockquote>
+                </div>
+                <div style="text-align: end">
+                    <?
+                    if ($admin) { ?>
+                        <p>Добавить сторку <span id="addTr" class="badge badge-success"><i class="fa fa-plus"></i></span></p>
+                    <? } ?>
                 </div>
             </section>
         </div>
@@ -171,7 +184,7 @@ if ($_COOKIE["user"]) {
 <script>
     $(document).ready(function(){
         $('#myTable').DataTable({
-            "pageLength": 50,
+            "pageLength": 25,
             "order": [[ 1, "desc" ]]
         });
     });

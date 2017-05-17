@@ -15,3 +15,4 @@ class ExelDb {
         $this->db = new Db('exel');
     }
 }
+?>
