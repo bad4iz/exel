@@ -12,7 +12,6 @@ namespace exel\model;
 class ExelDb {
     protected $db;
     function __construct() {
-        $this->db = new Db('exel');
+        $this->db = new Db('tableOrders');
     }
 }
-?>

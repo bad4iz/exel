@@ -1,129 +1,150 @@
-function setNumberKP(idMine, numberKp) { // пишем в базу номер кп
-    const text = {
-        id: idMine,
-        numberKp: numberKp
-    };
-    httpPost('Router/menegerRouter.php', 'addKp=' + JSON.stringify(text), function() {
-        location.reload();
+/**
+ * Created by bad4iz on 16.04.2017.
+ */
+window.onload = function () {
+
+    switchHide();
+    updateMenegerClick();
+    addTrClick()
+};
+
+
+function switchHide() { // переключатель визибл
+    const toggles = document.querySelectorAll('.switchHide');
+    toggles.forEach(toggle => {
+        toggle.ondblclick = function () {
+            const [one, two] = toggle.children;
+            one.style.display = '';
+            two.style.display = 'none';
+            one.focus();
+
+
+            document.onkeyup = function (e) {
+                e = e || window.event;
+                if (e.keyCode === 13) {
+                    job();
+                }
+                return false;
+            };
+
+            one.onblur = job;
+
+            function job() {
+
+                switch (one.name) {
+                    case "numberKPInput":
+                        if (one.value.length < 10) {
+                            two.style.display = '';
+                            one.style.display = 'none';
+                            if (one.value != two.textContent) {
+                                setNumberKP(one.dataset.main_id, one.value);
+
+                            }
+                        }
+                        break;
+                    case "desc":
+                            two.style.display = '';
+                            one.style.display = 'none';
+                        if (one.value != two.textContent) {
+                            updateDesc(this);
+                        }
+                        break;
+                    case "name":
+                            two.style.display = '';
+                            one.style.display = 'none';
+                        if (one.value != two.textContent) {
+                            updateName(this);
+                        }
+                        break;
+                    case "descKp":
+                            two.style.display = '';
+                            one.style.display = 'none';
+                        if (one.value != two.textContent) {
+                            updateDescKp(this);
+                        }
+                        break;
+                }
+            }
+        }
     });
 }
 
-function updateMeneger(that) {
+
+function setNumberKP(idMine, number_kp) { // пишем в базу номер кп
     const text = {
-        id: that.dataset.main_id,
-        menegerId: that.value
+        id: idMine,
+        number_kp: number_kp
     };
-    httpPost('Router/menegerRouter.php', 'updateMeneger=' + JSON.stringify(text), function() {
+    httpPost("table-orders/menegerRouter", 'addKp=' + JSON.stringify(text), function (it) {
         location.reload();
-    });
+    })
+
 }
+
 function updateMenegerClick() {
     const selects = document.querySelectorAll('.updateMeneger');
     selects.forEach(select => {
-        select.onchange = function() {
+        select.onchange = function () {
             updateMeneger(this);
-        };
-    });
+        }
+    })
+}
+function updateMeneger(that) {
+    const text = {
+        id: that.dataset.main_id,
+        meneger_id: that.value
+    };
+    httpPost("table-orders/menegerRouter", 'updateMeneger=' + JSON.stringify(text), function (it) {
+        location.reload()
+    })
 }
 
 function updateDesc(that) {
+
     const text = {
         id: that.dataset.main_id,
         desc: that.value
     };
-    httpPost('Router/menegerRouter.php', 'updateDesc=' + JSON.stringify(text), function() {
-        location.reload();
-    });
+    console.log(text);
+    httpPost("table-orders/menegerRouter", 'updateDesc=' + JSON.stringify(text), function (it) {
+        console.log(it);
+        location.reload()
+    })
 }
 function updateName(that) {
+
     const text = {
         id: that.dataset.main_id,
         name: that.value
     };
-    httpPost('Router/menegerRouter.php', 'updateName=' + JSON.stringify(text), function() {
-        location.reload();
-    });
+    // console.log(text);
+    httpPost("table-orders/menegerRouter", 'updateName=' + JSON.stringify(text), function (it) {
+        // console.log(it);
+        location.reload()
+    })
 }
+
 
 function updateDescKp(that) {
     const text = {
         id: that.dataset.main_id,
         descKp: that.value
     };
-    httpPost('Router/menegerRouter.php', 'updateDescKp=' + JSON.stringify(text), function() {
-        location.reload();
-    });
+    // console.log(text);
+    httpPost("table-orders/menegerRouter", 'updateDescKp=' + JSON.stringify(text), function (it) {
+        // console.log(it);
+        location.reload()
+    })
 }
 
 function addTrClick() {
-    const button = document.getElementById('addTr');
+    button = document.getElementById('addTr');
     if (button) {
-        button.onclick = function() {
-            httpPost('Router/menegerRouter.php', 'createItem=' + JSON.stringify('createItem'), function() {
-                location.reload();
-            });
-        };
+        button.onclick = function () {
+            httpPost("table-orders/menegerRouter", 'createItem=' + JSON.stringify("createItem"), function (it) {
+                // console.log(it);
+                location.reload()
+            })
+        }
     }
 }
-
-function switchHide() { // переключатель визибл
-    const toggles = document.querySelectorAll('.switchHide');
-    toggles.forEach(toggle => {
-        toggle.ondblclick = function() {
-            const [one, two] = toggle.children;
-            one.style.display = '';
-            two.style.display = 'none';
-            one.focus();
-            function job() {
-                switch (one.name) {
-                    case 'numberKPInput':
-                        if (one.value.length < 10) {
-                            two.style.display = '';
-                            one.style.display = 'none';
-                            if (one.value !== two.textContent) {
-                                setNumberKP(one.dataset.main_id, one.value);
-                            }
-                        }
-                        break;
-                    case 'desc':
-                        two.style.display = '';
-                        one.style.display = 'none';
-                        if (one.value !== two.textContent) {
-                            updateDesc(this);
-                        }
-                        break;
-                    case 'name':
-                        two.style.display = '';
-                        one.style.display = 'none';
-                        if (one.value !== two.textContent) {
-                            updateName(this);
-                        }
-                        break;
-                    case 'descKp':
-                        two.style.display = '';
-                        one.style.display = 'none';
-                        if (one.value !== two.textContent) {
-                            updateDescKp(this);
-                        }
-                        break;
-                    default :
-                }
-            }
-            document.onkeyup = function(event) {
-                const e = event || window.event;
-                if (e.keyCode === 13) {
-                    job();
-                }
-                return false;
-            };
-            one.onblur = job;
-        };
-    });
-}
-
-
-window.onload = function() {
-    switchHide();
-    updateMenegerClick();
-    addTrClick();
-};

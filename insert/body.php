@@ -3,7 +3,6 @@ use exel\VIews\Select;
 
 $menedger;
 $selectMeneger = [];
-
 foreach ($mains as $main) {
     $dateMain = new DateTime($main['dateMain']);
 
@@ -94,6 +93,3 @@ if ($admin) { ?>
         <td><span id="addTr" class="badge badge-success"><i class="fa fa-plus"></i></span></td>
     </tr>
 <? } ?>
-<script src="/js/meneger.js">
-
-</script>
