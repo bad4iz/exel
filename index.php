@@ -1,9 +1,52 @@
-
 <?
 use exel\model\MainModel;
 use exel\model\MenegerModel;
 use exel\VIews\Select;
 
+$admin = false;
+//
+//if ($_COOKIE["user"]) {
+//
+//    $user = unserialize(base64_decode($_COOKIE["user"]));
+//
+//    switch ($user['who']) {
+//        case 'admin':
+//            $admin = true;
+//            break;
+//        case 'meneger':
+//            $m = (int)$user['id'];
+//            break;
+//    }
+//
+//    if (isset($_GET['delete'])) {
+//        setcookie("user", "", time()-3600);
+//        header('Location: /');
+//        unset($_GET);
+//    }
+//
+//
+//} else if (isset($_GET['meneger'])) {
+//    $user = ['who' => 'meneger', 'id' => $_GET['meneger']];
+//    $str = base64_encode(serialize($user));
+//    setcookie("user", $str, time()+9999999);
+//
+//} else if (isset($_GET['admin'])) {
+//    $user = ['who' => 'admin', 'id' => $_GET['admin']];
+//    $str = base64_encode(serialize($user));
+//    setcookie("user", $str, time()+9999999);
+//    
+//
+//}
+
+if ($_SESSION['access'] == 6) {
+    $admin = true;
+} else if ($_SESSION['access'] == 10) {
+    {
+        $m = $_SESSION['IDUser'];
+    }
+}
+
+//print_r($_SESSION);
 $mainModel = new MainModel();
 $menegerModel = new MenegerModel();
 
@@ -12,10 +55,15 @@ $mains = $mainModel->getAll();
 $menegers = $menegerModel->getAll();
 
 
+//d($_SESSION);
 
 
 
 ?>
+
+<div class="femaly_name"> 
+<h5> <?= $_SESSION['name']. ' '. $_SESSION['femaly']  ?></h5>
+</div>
 
 <div class="content container">
     <div class="row">
@@ -35,6 +83,7 @@ $menegers = $menegerModel->getAll();
                     <h4>
                         <div style="text-align: end">
                             <?
+                            
                             if ($admin) { ?>
                                 <p>Добавить сторку <span id="addTr" class="badge badge-success"><i class="fa fa-plus"></i></span></p>
                             <? } ?>
@@ -113,4 +162,5 @@ $myFuter = '
 
 <script src="table_orders/js/lib/lib.js"></script>
 <script src="table_orders/js/meneger.js"></script>
+
 ';
