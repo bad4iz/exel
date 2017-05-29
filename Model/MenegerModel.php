@@ -13,8 +13,8 @@ class MenegerModel extends ExelDb {
     private $table = 'menegers';
 
     function getAll() {
-        $sql = "SELECT id as menegers_id, menegers.name as meneger_name  FROM $this->table";
-        $items = $this->db->selectAssoc($sql);
+        $sql = "SELECT IDUser as menegers_id, name as meneger_name , femaly as meneger_femaly  FROM `user`";
+        $items = $this->dbGeo->selectAssoc($sql);
         return $items;
     }
 
@@ -24,5 +24,13 @@ class MenegerModel extends ExelDb {
         return $id;
     }
 
-
+    /**
+     * вывод менеджерво комерческого отдела по доступу 10
+     * @return array|null
+     */
+    function getAllMenegerKom() {
+        $sql = "SELECT IDUser as menegers_id, name as meneger_name , femaly as meneger_femaly  FROM `user` WHERE access='10' ";
+        $items = $this->dbGeo->selectAssoc($sql);
+        return $items;
+    }
 }

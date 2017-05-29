@@ -4,39 +4,15 @@ use exel\model\MenegerModel;
 use exel\VIews\Select;
 
 $admin = false;
-//
-//if ($_COOKIE["user"]) {
-//
-//    $user = unserialize(base64_decode($_COOKIE["user"]));
-//
-//    switch ($user['who']) {
-//        case 'admin':
-//            $admin = true;
-//            break;
-//        case 'meneger':
-//            $m = (int)$user['id'];
-//            break;
-//    }
-//
-//    if (isset($_GET['delete'])) {
-//        setcookie("user", "", time()-3600);
-//        header('Location: /');
-//        unset($_GET);
-//    }
-//
-//
-//} else if (isset($_GET['meneger'])) {
-//    $user = ['who' => 'meneger', 'id' => $_GET['meneger']];
-//    $str = base64_encode(serialize($user));
-//    setcookie("user", $str, time()+9999999);
-//
-//} else if (isset($_GET['admin'])) {
-//    $user = ['who' => 'admin', 'id' => $_GET['admin']];
-//    $str = base64_encode(serialize($user));
-//    setcookie("user", $str, time()+9999999);
-//    
-//
-//}
+
+$mainModel = new MainModel();
+$menegerModel = new MenegerModel();
+
+
+$mains = $mainModel->getAll();
+$menegers = $menegerModel->getAllMenegerKom();
+
+
 
 if ($_SESSION['access'] == 6) {
     $admin = true;
@@ -46,16 +22,6 @@ if ($_SESSION['access'] == 6) {
     }
 }
 
-//print_r($_SESSION);
-$mainModel = new MainModel();
-$menegerModel = new MenegerModel();
-
-
-$mains = $mainModel->getAll();
-$menegers = $menegerModel->getAll();
-
-
-//d($_SESSION);
 
 
 

@@ -22,7 +22,7 @@ foreach ($_POST as $key => $value) {
         case 'updateMeneger':
             $resp = json_decode($value);
             print $mains->updateMeneger($resp->id, $resp->meneger_id);
-            //            print $value;
+//                        print $value;
             break;
         case 'updateDesc':
             $resp = json_decode($value);
@@ -44,3 +44,4 @@ foreach ($_POST as $key => $value) {
             break;
     }
 }
+exit();

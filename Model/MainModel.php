@@ -13,10 +13,10 @@ class MainModel extends ExelDb {
     private $table = 'main';
 
     function getAll() {
-        $sql = "SELECT main.id as main_id, main.dateMain, main.name, main.desc, menegers.id as menegers_id, 
-                        menegers.name as meneger_name,   main.number_kp, main.desc_kp, main.date_kp
+        $sql = "SELECT main.id as main_id, main.dateMain, main.name, main.desc, user.IDUser as menegers_id, 
+                        user.name as meneger_name, user.femaly as meneger_femaly,   main.number_kp, main.desc_kp, main.date_kp
                                         FROM main
-                      LEFT JOIN menegers ON  ($this->table.meneger_id =  menegers.id)";
+                     LEFT JOIN geo.user as user ON  (main.meneger_id =  user.IDUser)";
         $items = $this->db->selectAssoc($sql);
         return $items;
     }

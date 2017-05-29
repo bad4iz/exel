@@ -1,7 +1,6 @@
 <?
 use exel\VIews\Select;
 
-$menedger;
 $selectMeneger = [];
 foreach ($mains as $main) {
     $dateMain = new DateTime($main['dateMain']);
@@ -13,7 +12,6 @@ foreach ($mains as $main) {
         $dateKp = '';
     }
     ?>
-
 
     <tr>
         <td><?= $main['main_id'] ?></td>
@@ -40,11 +38,11 @@ foreach ($mains as $main) {
                 $selectMeneger[$main['main_id']] = new Select($menegers);
                 $selectMeneger[$main['main_id']]->selected($main['menegers_id']);
 
-                $selectMeneger[$main['main_id']]->setAttr('menegers_id', 'meneger_name');
+                $selectMeneger[$main['main_id']]->setAttr('menegers_id', 'meneger_femaly' );
 
                 $selectMeneger[$main['main_id']]->view("data-main_id=" . $main['main_id']);
             } else {
-                echo $main['meneger_name'];
+                echo  $main['meneger_femaly'] . ' ' . $main['meneger_name'];
             } ?>
 
         </td>

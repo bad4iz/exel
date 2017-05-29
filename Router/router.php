@@ -12,7 +12,7 @@ switch ($routes[2]) {
         $title = 'Заказчики FJV';
         include($_SERVER['DOCUMENT_ROOT'] . "/core/view/pages/header.php");
         include($_SERVER['DOCUMENT_ROOT'] . "/table_orders/index.php");
-        echo $myFuter;
+//        echo $myFuter;
         break;
 
     default:

@@ -95,7 +95,8 @@ function updateMeneger(that) {
         meneger_id: that.value
     };
     httpPost("table-orders/menegerRouter", 'updateMeneger=' + JSON.stringify(text), function (it) {
-        location.reload()
+      console.log(it)
+        // location.reload()
     })
 }
 
