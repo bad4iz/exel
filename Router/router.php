@@ -6,6 +6,9 @@ include($_SERVER['DOCUMENT_ROOT'] . "/table_orders/bootstrap.php");
 switch ($routes[2]) {
     case "menegerRouter":
         include($_SERVER['DOCUMENT_ROOT'] . "/table_orders/Router/menegerRouter.php");
+        break;   
+    case "icon":
+        include($_SERVER['DOCUMENT_ROOT'] . "/table_orders/ui_icons.php");
         break;
     case "":
         
