@@ -47,7 +47,7 @@ foreach ($mains as $main) {
 
         </td>
         <td class="center">
-            <? if ($user['id'] === $main['menegers_id']) {
+            <? if (($m === $main['menegers_id'])) {
                 ?>
                 <div class="switchHide">
                     <input maxlength="10" data-main_id="<?= $main['main_id'] ?>" style="display:none;" type="text"
@@ -61,7 +61,7 @@ foreach ($mains as $main) {
             ?>
         </td >
         <td style="max-width: 300px;">
-            <? if ($user['id'] === $main['menegers_id']) {
+            <? if ($m === $main['menegers_id']) {
                 ?>
                 <div class="switchHide" style="max-width: 300px">
                     <textarea  data-main_id="<?= $main['main_id'] ?>" style="display:none;" type="text"

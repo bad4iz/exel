@@ -5,6 +5,8 @@ include($_SERVER['DOCUMENT_ROOT'] . "/table_orders/bootstrap.php");
 
 switch ($routes[2]) {
     case "menegerRouter":
+        $title = 'Зак';
+        include($_SERVER['DOCUMENT_ROOT'] . "/core/view/pages/header.php");
         include($_SERVER['DOCUMENT_ROOT'] . "/table_orders/Router/menegerRouter.php");
         break;   
     case "icon":
@@ -12,7 +14,7 @@ switch ($routes[2]) {
         break;
     case "":
         
-        $title = 'Заказчики FJV';
+        $title = ' Таблица Ордера';
         include($_SERVER['DOCUMENT_ROOT'] . "/core/view/pages/header.php");
         include($_SERVER['DOCUMENT_ROOT'] . "/table_orders/index.php");
 //        echo $myFuter;
