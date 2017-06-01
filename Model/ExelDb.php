@@ -12,7 +12,7 @@ namespace exel\model;
 class ExelDb {
     protected $db;
     function __construct() {
-        $this->db = new Db('tableOrders');
+        $this->db = new Db('tableOrders','mirrorTableOrders');
         $this->dbGeo = new Db('geo');
     }
 }
