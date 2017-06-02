@@ -1,11 +1,10 @@
 /**
  * Created by bad4iz on 16.04.2017.
  */
-window.onload = function () {
-
+window.onload = function() {
     switchHide();
     updateMenegerClick();
-    addTrClick()
+    addTrClick();
 };
 
 

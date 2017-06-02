@@ -120,7 +120,10 @@ $myFuter = '
         $(\'#myTable\').DataTable({
         "pageLength": 100,
             "order": [[ 1, "desc" ]]
-    });
+    }).on( "draw", function () {
+     switchHide();
+   
+} );
     });
 </script>
 
