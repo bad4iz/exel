@@ -3,6 +3,9 @@ use exel\model\MainModel;
 use exel\model\MenegerModel;
 use exel\VIews\Select;
 
+require_once 'vendor/autoload.php';
+
+
 $admin = false;
 
 $mainModel = new MainModel();
@@ -11,7 +14,6 @@ $menegerModel = new MenegerModel();
 
 $mains = $mainModel->getAll();
 $menegers = $menegerModel->getAllMenegerKom();
-
 
 
 if ($_SESSION['access'] == 6) {
@@ -23,12 +25,31 @@ if ($_SESSION['access'] == 6) {
 }
 
 
+if ($_SESSION['auth_admin_login'] == "bad4iz") {
+    d($_SESSION);
 
+    ///////////////////////////////////////////////////////
+    ///   видно только мне 
+    /// ----------------------------------------------
+    ?>
 
+    <?
+
+    /// ----------------------------------------------
+    ///   видно только мне 
+    ///////////////////////////////////////////////////////
+}
 ?>
 
-<div class="femaly_name"> 
-<h5> <?= $_SESSION['name']. ' '. $_SESSION['femaly']  ?></h5>
+
+    <link href="link/qw/jquery-ui.min.css" rel="stylesheet">
+    <link href="link/qw/jquery-ui.theme.min.css" rel="stylesheet">
+    <link href="https://jquery-ui-bootstrap.github.io/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css"
+          rel="stylesheet">
+
+
+<div class="femaly_name">
+    <h5> <?= $_SESSION['name'] . ' ' . $_SESSION['femaly'] ?></h5>
 </div>
 
 <div class="content container">
@@ -40,7 +61,20 @@ if ($_SESSION['access'] == 6) {
         </div>
 
     </div>
-
+    <div class="panel-group" id="accordion2">
+        <div class="panel">
+            <div class="panel-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                    Фильтр по датам
+                </a>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" style="height: auto;">
+                <div class="panel-body">
+                    <div id="date_range"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
 
         <div class="col-md-12">
@@ -49,9 +83,10 @@ if ($_SESSION['access'] == 6) {
                     <h4>
                         <div style="text-align: end">
                             <?
-                            
+
                             if ($admin) { ?>
-                                <p>Добавить сторку <span id="addTr" class="badge badge-success"><i class="fa fa-plus"></i></span></p>
+                                <p>Добавить сторку <span id="addTr" class="badge badge-success"><i
+                                                class="fa fa-plus"></i></span></p>
                             <? } ?>
                         </div>
 
@@ -75,7 +110,7 @@ if ($_SESSION['access'] == 6) {
                         <thead>
                         <tr>
                             <th class="no-sort">#</th>
-                            <th  style="max-width: 100px !important; text-align: center;">Дата заявки</th>
+                            <th style="max-width: 100px !important; text-align: center;">Дата заявки</th>
                             <th style="text-align: center;">Наименование контрагента</th>
                             <th style="text-align: center;">Краткое содежание заявки</th>
                             <th style="text-align: center;">Ответственое лицо</th>
@@ -96,40 +131,77 @@ if ($_SESSION['access'] == 6) {
                 <div style="text-align: end">
                     <?
                     if ($admin) { ?>
-                        <p>Добавить сторку <span id="addTr" class="badge badge-success"><i class="fa fa-plus"></i></span></p>
+                        <p>Добавить сторку <span id="addTr" class="badge badge-success"><i
+                                        class="fa fa-plus"></i></span></p>
                     <? } ?>
                 </div>
             </section>
         </div>
     </div>
 </div>
+
+
+
+
+
 <?
-$myFuter = '
-<?//d($_SERVER)?>
-<!-- jquery and friends -->
-<script src="link/lib/jquery/jquery-2.0.3.min.js"></script>
 
-<!--<script src="link/lib/select2.js"></script>-->
-<script src="link/lib/jquery.dataTables.min.js"></script>
 
-<script src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></script>
+    include($_SERVER['DOCUMENT_ROOT'] . "/core/view/pages/default_scripts.php");
+
+    $myFuter = '
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="link/qw/jquery-ui.min.js"></script>
+    <script src="https://rawgit.com/Artemeey/5ebc39370e568c34f03dce1639cabee8/raw/8de40b26479c406ee9cd6f9b4b3f4ad05370a024/jquery.datepicker.extension.range.min.js"></script>
+
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
-<script>
-    $(document).ready(function(){
-        $(\'#myTable\').DataTable({
-        "pageLength": 100,
-            "order": [[ 1, "desc" ]]
-    }).on( "draw", function () {
-     switchHide();
-   
-} );
-    });
-</script>
 
 
+    <script src="table_orders/js/lib/lib.js"></script>
+    <script src="table_orders/js/meneger.js"></script>
 
-<script src="table_orders/js/lib/lib.js"></script>
-<script src="table_orders/js/meneger.js"></script>
+<script >
 
-';
+
+    var table = $(\'#myTable\').DataTable({
+        "pageLength": 100, "order": [[ 1, "desc" ]]
+    }).on( "draw", function () { switchHide();} );
+    
+
+      $(\'#date_range\').datepicker({
+        range: \'period\', // режим - выбор периода
+        numberOfMonths: 2,
+        onSelect: function(dateText, inst, extensionRange, caused) { // метод выполняется когда изменился выбор дат
+             table.draw();
+        }
+      });
+
+      function isUndef(x) {
+        return x === undefined;
+      }
+    var extensionRange = $("#date_range").datepicker("widget").data("datepickerExtensionRange"); // 
+    
+    $.fn.dataTable.ext.search.push(
+        
+        function( settings, data, dataIndex) {
+
+            var minTmp = extensionRange.startDateText  || " ";
+            var date = data[1].split(" ")[0] || ""; // use data for the age column
+            var tmpMin = minTmp.split( "/" );
+            var min = tmpMin[2] + "-" + tmpMin[0] +"-" + tmpMin[1]
+                        
+            var maxTmp = extensionRange.endDateText || " ";
+            var tmpMax = maxTmp.split( "/" );
+            var max = tmpMax[2] + "-" + tmpMax[0] +"-" + tmpMax[1]
+            
+            if ( ( isUndef( min ) && isUndef( max ) ) || ( isUndef( min ) && date <= max ) ||
+                 ( min <= date   && isUndef( max ) ) ||  ( min <= date   && date <= max ) )  {
+                return true;
+            }
+            return false;
+        }
+    );
+
+
+</script>';
