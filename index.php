@@ -46,110 +46,115 @@ if ($_SESSION['auth_admin_login'] == "bad4iz") {
     <link href="link/qw/jquery-ui.theme.min.css" rel="stylesheet">
     <link href="https://jquery-ui-bootstrap.github.io/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css"
           rel="stylesheet">
+    <style>
+        .ui-datepicker.ui-datepicker-multi {
+            width: auto;
+            margin: auto;
+        }
+    </style>
 
-
-<div class="femaly_name">
-    <h5> <?= $_SESSION['name'] . ' ' . $_SESSION['femaly'] ?></h5>
-</div>
-
-<div class="content container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="page-title"><i class="fa fa-list-alt"></i> Таблица Ордера
-                <!--                <small>Different variations</small>-->
-            </h2>
-        </div>
-
+    <div class="femaly_name">
     </div>
-    <div class="panel-group" id="accordion2">
-        <div class="panel">
-            <div class="panel-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                    Фильтр по датам
-                </a>
+
+    <div class="content container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-title"><i class="fa fa-list-alt"></i> Таблица Ордера </h2>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse" style="height: auto;">
-                <div class="panel-body">
-                    <div id="date_range"></div>
+
+        </div>
+        <div class="panel-group" id="accordion2">
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                        Фильтр по датам
+                    </a>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" style="height: auto;">
+                    <div class="panel-body">
+                        <div id="date_range"></div>
+                    </div>
+                    <div class="col-md-3" style="margin: auto; float: none">
+                        <button class="btn btn-lg btn-warning btn-block" onclick="resetDate()">
+                            Сбросить
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
+        <div class="row">
 
-        <div class="col-md-12">
-            <section class="widget">
-                <header>
-                    <h4>
-                        <div style="text-align: end">
-                            <?
+            <div class="col-md-12">
+                <section class="widget">
+                    <header>
+                        <h4>
+                            <div style="text-align: end">
+                                <?
 
-                            if ($admin) { ?>
-                                <p>Добавить сторку <span id="addTr" class="badge badge-success"><i
-                                                class="fa fa-plus"></i></span></p>
-                            <? } ?>
-                        </div>
+                                if ($admin) { ?>
+                                    <p>Добавить сторку <span id="addTr" class="badge badge-success"><i
+                                                    class="fa fa-plus"></i></span></p>
+                                <? } ?>
+                            </div>
 
-                        <!--                        <a href="?delete="> Выйти</a>-->
-                    </h4>
-                </header>
-                <style>
-                    select, textarea {
-                        color: initial;
-                        font: inherit;
-                        margin: 0;
-                    }
-                </style>
-                <div class="body">
-                    <?
-                    rsort($mains);
-                    //                    d($mains);
+                            <!--                        <a href="?delete="> Выйти</a>-->
+                        </h4>
+                    </header>
+                    <style>
+                        select, textarea {
+                            color: initial;
+                            font: inherit;
+                            margin: 0;
+                        }
+                    </style>
+                    <div class="body">
+                        <?
+                        rsort($mains);
+                        //                    d($mains);
 
-                    ?>
-                    <table id="myTable" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th class="no-sort">#</th>
-                            <th style="max-width: 100px !important; text-align: center;">Дата заявки</th>
-                            <th style="text-align: center;">Наименование контрагента</th>
-                            <th style="text-align: center;">Краткое содежание заявки</th>
-                            <th style="text-align: center;">Ответственое лицо</th>
-                            <th style="text-align: center;">Номер КП</th>
-                            <th style="text-align: center;">Комментарий КП</th>
-                            <th style="text-align: center;">Дата внесения КП</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <? include 'insert/body.php'; ?>
+                        ?>
+                        <table id="myTable" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="no-sort">#</th>
+                                <th style="max-width: 100px !important; text-align: center;">Дата заявки</th>
+                                <th style="text-align: center;">Наименование контрагента</th>
+                                <th style="text-align: center;">Краткое содежание заявки</th>
+                                <th style="text-align: center;">Ответственое лицо</th>
+                                <th style="text-align: center;">Номер КП</th>
+                                <th style="text-align: center;">Комментарий КП</th>
+                                <th style="text-align: center;">Дата внесения КП</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <? include 'insert/body.php'; ?>
 
-                        </tbody>
-                    </table>
-                    <blockquote>
-                        сноска сюда что нибудь вставить
-                    </blockquote>
-                </div>
-                <div style="text-align: end">
-                    <?
-                    if ($admin) { ?>
-                        <p>Добавить сторку <span id="addTr" class="badge badge-success"><i
-                                        class="fa fa-plus"></i></span></p>
-                    <? } ?>
-                </div>
-            </section>
+                            </tbody>
+                        </table>
+                        <blockquote>
+                            сноска сюда что нибудь вставить
+                        </blockquote>
+                    </div>
+                    <div style="text-align: end">
+                        <?
+                        if ($admin) { ?>
+                            <p>Добавить сторку <span id="addTr" class="badge badge-success"><i
+                                            class="fa fa-plus"></i></span></p>
+                        <? } ?>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
-</div>
-
-
-
 
 
 <?
 
 
-    include($_SERVER['DOCUMENT_ROOT'] . "/core/view/pages/default_scripts.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/core/view/pages/default_scripts.php");
 
-    $myFuter = '
+$myFuter = '
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="link/qw/jquery-ui.min.js"></script>
     <script src="https://rawgit.com/Artemeey/5ebc39370e568c34f03dce1639cabee8/raw/8de40b26479c406ee9cd6f9b4b3f4ad05370a024/jquery.datepicker.extension.range.min.js"></script>
@@ -202,6 +207,12 @@ if ($_SESSION['auth_admin_login'] == "bad4iz") {
             return false;
         }
     );
+    
+    function resetDate() {
+        extensionRange.startDateText = "01/01/01";
+        extensionRange.endDateText = "01/01/99";
+         table.draw();
+    }
 
 
 </script>';
