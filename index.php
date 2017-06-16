@@ -16,6 +16,34 @@ $mains = $mainModel->getAll();
 $menegers = $menegerModel->getAllMenegerKom();
 
 
+$chartManger = [];
+$tableAnalystArr = [];
+foreach ($mains as $main) {
+    $chartManger[$main['meneger_femaly']]['count'] += 1;
+    $tableAnalystArr[$main['meneger_femaly']]['countOrders'] += 1;
+    if ($main['date_kp']) {
+        $tableAnalystArr[$main['meneger_femaly']]['countAnswer'] += 1;
+    } else {
+        $tableAnalystArr[$main['meneger_femaly']]['countNoAnswer'] += 1;
+    }
+    if (!$main['number_kp']){
+        $tableAnalystArr[$main['meneger_femaly']]['noneNumberKp'] += 1;
+    }
+}
+
+////  chart Manger
+$chartMangerString = '[[\'Task\', \'Hours per Day\']';
+foreach ($chartManger as $key => $main) {
+    $chartMangerString .= ",['" . $key . "'," . $main['count'] . "]";
+}
+$chartMangerString .= ']';
+//    
+
+foreach ($mains as $key => $main) {
+   
+}
+
+
 if ($_SESSION['access'] == 6) {
     $admin = true;
 } else if ($_SESSION['access'] == 10) {
@@ -28,9 +56,29 @@ if ($_SESSION['access'] == 6) {
 if ($_SESSION['auth_admin_login'] == "bad4iz") {
     d($_SESSION);
 
+    d($mains);
+
     ///////////////////////////////////////////////////////
     ///   видно только мне 
     /// ----------------------------------------------
+    /// 
+    /// 
+
+    /**
+     *
+     * main_id
+     * dateMain
+     * name
+     * desc
+     * menegers_id
+     * meneger_name
+     * meneger_femaly
+     * number_kp
+     * desc_kp
+     * date_kp
+     */
+
+    d($tableAnalystArr);
     ?>
 
     <?
@@ -71,15 +119,61 @@ if ($_SESSION['auth_admin_login'] == "bad4iz") {
                         Фильтр по датам
                     </a>
                 </div>
+
                 <div id="collapseOne" class="panel-collapse collapse" style="height: auto;">
                     <div class="panel-body">
                         <div id="date_range"></div>
-                    </div>
                     <div class="col-md-3" style="margin: auto; float: none">
                         <button class="btn btn-lg btn-warning btn-block" onclick="resetDate()">
                             Сбросить
                         </button>
                     </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#analyst">
+                        Аналитика
+                    </a>
+                </div>
+                <div id="analyst" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    <div id="piechart" style="width: 100%; height: 400px"></div>
+                    <div id="table-analyst">
+                        <table id="tableAnalyst" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Фамилия</th>
+                                <th>Назначено заявок</th>
+                                <th>Обработано заявок</th>
+                                <th>Заявки без номера КП</th>
+                                <th>Не принято заявок</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?
+                                foreach ($tableAnalystArr as $key => $value) {
+                                    ?>
+                                    <tr>
+                                        <td><?=$key?></td>
+                                        <td><?=$value['countOrders']?></td>
+                                        <td><?=$value['countAnswer']?></td>
+                                        <td><?=$value['noneNumberKp'] - $value['countNoAnswer']?></td>
+                                        <td><?=$value['countNoAnswer']?></td>
+                                    </tr>
+                                    <?
+                                }
+                            ?>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -158,14 +252,16 @@ $myFuter = '
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="link/qw/jquery-ui.min.js"></script>
     <script src="https://rawgit.com/Artemeey/5ebc39370e568c34f03dce1639cabee8/raw/8de40b26479c406ee9cd6f9b4b3f4ad05370a024/jquery.datepicker.extension.range.min.js"></script>
+  
 
-<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
 
 
     <script src="table_orders/js/lib/lib.js"></script>
     <script src="table_orders/js/meneger.js"></script>
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script >
 
 
@@ -194,11 +290,11 @@ $myFuter = '
             var minTmp = extensionRange.startDateText  || " ";
             var date = data[1].split(" ")[0] || ""; // use data for the age column
             var tmpMin = minTmp.split( "/" );
-            var min = tmpMin[2] + "-" + tmpMin[0] +"-" + tmpMin[1]
+            var min = tmpMin[2] + "-" + tmpMin[0] +"-" + tmpMin[1];
                         
             var maxTmp = extensionRange.endDateText || " ";
             var tmpMax = maxTmp.split( "/" );
-            var max = tmpMax[2] + "-" + tmpMax[0] +"-" + tmpMax[1]
+            var max = tmpMax[2] + "-" + tmpMax[0] +"-" + tmpMax[1];
             
             if ( ( isUndef( min ) && isUndef( max ) ) || ( isUndef( min ) && date <= max ) ||
                  ( min <= date   && isUndef( max ) ) ||  ( min <= date   && date <= max ) )  {
@@ -214,5 +310,34 @@ $myFuter = '
          table.draw();
     }
 
+    resetDate(); // сбросили фильтр
+
+      google.charts.load(\'current\', {\'packages\':[\'corechart\']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(' . $chartMangerString . ');
+
+        var options = {
+            title: \'Распределение заявок\',
+            backgroundColor: \'#666968\',
+            tooltip: {
+                textStyle: {
+                    color: \'#666968\'
+                    }, 
+                showColorCode: true
+            },
+            height: 400,
+            width: 900
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
+
+        chart.draw(data, options);
+      }
+      
+     ////////////////////
+    
 
 </script>';

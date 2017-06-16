@@ -1,19 +1,51 @@
 <?
 use exel\VIews\Select;
 
+
+function nextWorkDay($day){
+    $tmpN = date('N', strtotime('+1 day', strtotime($day)));
+    $tmp = strtotime('+1 day', strtotime($day));
+    switch ($tmpN) {
+        case 6:
+            $tmp = strtotime('+1 day', $tmp);
+        case 7:
+            $tmp = strtotime('+1 day', $tmp);
+    }
+    
+    return $tmp; 
+}
+
 $selectMeneger = [];
 foreach ($mains as $main) {
     $dateMain = new DateTime($main['dateMain']);
 
+//    print "<script>console.log(". $dateMain .")</script>";
+    
     if ($main['date_kp']) {
         $dateKp = new DateTime($main['date_kp']);
         $dateKp = $dateKp->Format('Y-m-d');
     } else {
         $dateKp = '';
     }
+
+    
+    
+
+ 
     ?>
 
-    <tr>
+
+ 
+    <tr 
+       style="<?
+            if(!$dateKp){
+                $dateNext =  nextWorkDay($main['dateMain']);
+                if ($dateNext< time()){
+                    echo 'border: 1px solid #fb0909;';
+                }
+            }
+        ?>"
+    >
         <td><?= $main['main_id'] ?></td>
         <td class="center entryInputData max50" style="max-width: 100px !important; ">
             <?= $dateMain->Format('Y-m-d'); ?> <?= $dateMain->Format('H:i') ?>

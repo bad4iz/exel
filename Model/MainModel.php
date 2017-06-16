@@ -48,7 +48,7 @@ class MainModel extends ExelDb {
         return $id;
     }
    function updateDeskKp($id, $desc){
-        $sql = "UPDATE `main` SET `desc_kp`='$desc' WHERE id=$id";
+        $sql = "UPDATE `main` SET `desc_kp`='$desc',`date_kp`=now() WHERE id=$id";
         $id = $this->db->addAndGetId($sql);
         return $id;
     }
