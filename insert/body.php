@@ -1,7 +1,6 @@
 <?
 use exel\VIews\Select;
 
-
 function nextWorkDay($day){
     $tmpN = date('N', strtotime('+1 day', strtotime($day)));
     $tmp = strtotime('+1 day', strtotime($day));
@@ -11,7 +10,6 @@ function nextWorkDay($day){
         case 7:
             $tmp = strtotime('+1 day', $tmp);
     }
-    
     return $tmp; 
 }
 
@@ -26,12 +24,7 @@ foreach ($mains as $main) {
         $dateKp = $dateKp->Format('Y-m-d');
     } else {
         $dateKp = '';
-    }
-
-    
-    
-
- 
+    } 
     ?>
 
 
@@ -39,6 +32,7 @@ foreach ($mains as $main) {
     <tr 
        style="<?
             if(!$dateKp){
+                mysql_query('INSERT INTO `rivg_messages_only_user` (`IDmessanges`, `IDUser`, `IDUser_Sender`, `id_doc`, `Status`, `Text`, `visible`) VALUES (NULL, "'.$main[menegers_id].'", "1", "'. $main['main_id'] .'", "0", "У вас имеется не заполненое поле", "0");');
                 $dateNext =  nextWorkDay($main['dateMain']);
                 if ($dateNext< time()){
                     echo 'border: 1px solid #fb0909;';
@@ -78,6 +72,9 @@ foreach ($mains as $main) {
             } ?>
 
         </td>
+        
+                
+        <!--        номер кп-->
         <td class="center">
             <? if (($m === $main['menegers_id'])) {
                 ?>
@@ -92,6 +89,25 @@ foreach ($mains as $main) {
             }
             ?>
         </td >
+        <!--      /  номер кп-->
+        
+        <!--        сумма-->
+        <td class="center">
+            <? if (($m === $main['menegers_id'])) {
+                ?>
+                <div class="switchHide">
+                    <input maxlength="10" data-main_id="<?= $main['main_id'] ?>" style="display:none;" type="text"
+                           class="sum" value="<?= $main['sum'] ?>" name="sum">
+                    <p style="border-bottom: 1px solid #3a3a3a"><?= $main['sum'] ? $main['sum'] : '......' ?></p>
+                </div>
+            <?
+            } else {
+                echo $main["sum"];
+            }
+            ?>
+        </td >
+        <!--       / сумма-->
+        
         <td style="max-width: 300px;">
             <? if ($m === $main['menegers_id']) {
                 ?>

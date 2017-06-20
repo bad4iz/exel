@@ -42,6 +42,10 @@ foreach ($_POST as $key => $value) {
             print $mains->createItem();
             //            print $value;
             break;
+        case 'updateSum':
+            $resp = json_decode($value);
+            print $mains->updateSum($resp->id, $resp->sum);
+            break;
     }
 }
 exit();
