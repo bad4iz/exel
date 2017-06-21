@@ -21,6 +21,9 @@ $tableAnalystArr = [];
 foreach ($mains as $main) {
     $chartManger[$main['meneger_femaly']]['count'] += 1;
     $tableAnalystArr[$main['meneger_femaly']]['countOrders'] += 1;
+    
+    $tableAnalystArr[$main['meneger_femaly']]['sum'] += $main['sum'];
+    
     if ($main['date_kp']) {
         $tableAnalystArr[$main['meneger_femaly']]['countAnswer'] += 1;
     } else {
@@ -150,6 +153,7 @@ if ($_SESSION['auth_admin_login'] == "bad4iz") {
                                 <th>Обработано заявок</th>
                                 <th>Заявки без номера КП</th>
                                 <th>Не принято заявок</th>
+                                <th>Сумма</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -162,6 +166,7 @@ if ($_SESSION['auth_admin_login'] == "bad4iz") {
                                         <td><?=$value['countAnswer']?></td>
                                         <td><?=$value['noneNumberKp'] - $value['countNoAnswer']?></td>
                                         <td><?=$value['countNoAnswer']?></td>
+                                        <td><?=$value['sum']?></td>
                                     </tr>
                                     <?
                                 }
