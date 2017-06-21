@@ -32,7 +32,7 @@ foreach ($mains as $main) {
     <tr 
        style="<?
             if(!$dateKp){
-                mysql_query('INSERT INTO `rivg_messages_only_user` (`IDmessanges`, `IDUser`, `IDUser_Sender`, `id_doc`, `Status`, `Text`, `visible`) VALUES (NULL, "'.$main[menegers_id].'", "1", "'. $main['main_id'] .'", "0", "У вас имеется не заполненое поле", "0");');
+                mysql_query('INSERT INTO `rivg_messages_only_user` (`IDmessanges`, `IDUser`, `IDUser_Sender`, `id_doc`, `Status`, `Text`, `visible`) VALUES (NULL, "'.$main[menegers_id].'", "1", "'. $main['main_id'] .'", "0", "У вас имеется не заполненое поле в таблице Ордера", "0");');
                 $dateNext =  nextWorkDay($main['dateMain']);
                 if ($dateNext< time()){
                     echo 'border: 1px solid #fb0909;';

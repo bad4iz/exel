@@ -41,14 +41,14 @@ function switchHide() { // переключатель визибл
                         }
                         break;
                     case 'sum':
-                    if (one.value.length < 10) {
-                        two.style.display = '';
-                        one.style.display = 'none';
-                        if (one.value != two.textContent) {
-                            updateSum(one.dataset.main_id, one.value);
+                        if (one.value.length < 10) {
+                            two.style.display = '';
+                            one.style.display = 'none';
+                            if (one.value != two.textContent) {
+                                updateSum(one.dataset.main_id, one.value);
+                            }
                         }
-                    }
-                    break;
+                        break;
                     case 'desc':
                         two.style.display = '';
                         one.style.display = 'none';
